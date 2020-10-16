@@ -6,21 +6,34 @@
     "scripts": {
         "eslint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
         "check-types": "tsc --noemit",
-        "lint": "npm run eslint && npm run check-types"
+        "lint": "npm run eslint && npm run check-types",
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
     },
     "husky": {
         "hooks": {
             "pre-commit": "npx lint"
         }
     },
+    "jest": {
+        "collectCoverage": true
+    },
+    "type": "module",
     "keywords": [],
     "author": "",
     "license": "MIT",
     "devDependencies": {
+        "@babel/core": "^7.12.3",
+        "@babel/preset-env": "^7.12.1",
+        "@babel/preset-typescript": "^7.12.1",
         "@nick-mazuk/eslint-config": "^0.2.0",
         "@types/node": "^14.11.8",
         "@types/react": "^16.9.52",
+        "babel-jest": "^26.5.2",
         "eslint": "^7.11.0",
-        "husky": "^4.3.0"
+        "husky": "^4.3.0",
+        "jest": "^26.5.3"
+    },
+    "dependencies": {
+        "@types/jest": "^26.0.14"
     }
 }
