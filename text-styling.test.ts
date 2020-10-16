@@ -18,6 +18,7 @@ test('Strings should end with punctuation unless one is provided', () => {
     expect(endWithPunctuation('Hello world?', '!')).toBe('Hello world?')
     expect(endWithPunctuation('Hello world!', '!')).toBe('Hello world!')
 
+    // if the second parameter is multiple characters, ignore it
     expect(endWithPunctuation('Hello world', '!!')).toBe('Hello world.')
 })
 
@@ -27,6 +28,7 @@ test('Formats a number with thousands separators', () => {
     expect(formatNumber('1000')).toBe('1,000')
     expect(formatNumber('10,0000,0')).toBe('1,000,000')
     expect(formatNumber('1.')).toBe('1')
+    expect(formatNumber('1.0')).toBe('1.0')
     expect(formatNumber('000100')).toBe('100')
     expect(formatNumber('000100.')).toBe('100')
     expect(formatNumber('000100.0')).toBe('100.0')
