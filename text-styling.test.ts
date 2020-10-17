@@ -32,6 +32,7 @@ test('Formats a number with thousands separators', () => {
     expect(formatNumber('000100')).toBe('100')
     expect(formatNumber('000100.')).toBe('100')
     expect(formatNumber('000100.0')).toBe('100.0')
+    expect(() => {formatNumber('hello')}).toThrow()
 })
 
 test('Sentence case: First word of every sentence is capitalized', () => {
