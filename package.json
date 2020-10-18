@@ -7,7 +7,7 @@
         "eslint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
         "check-types": "tsc --noemit",
         "lint": "npm run eslint && npm run check-types",
-        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+        "test": "jest --watch"
     },
     "husky": {
         "hooks": {
