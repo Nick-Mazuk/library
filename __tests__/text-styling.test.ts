@@ -1,4 +1,4 @@
-import { sentenceCase, endWithPunctuation, formatNumber } from './text-styling'
+import { sentenceCase, endWithPunctuation, formatNumber } from '../text-styling'
 
 describe('Strings should end with punctuation', () => {
     test('Base case: empty strings should not get punctuation', () => {
