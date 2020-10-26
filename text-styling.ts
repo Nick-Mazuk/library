@@ -5,8 +5,13 @@ export const endWithPunctuation = (string: string, punctuation?: string): string
 }
 
 export const formatNumber = (number: string): string => {
-    if(number === '') return ''
-    if(isNaN(parseFloat(number)) || number.match(/\s/) || ((number.match(/[.]/giu)?.length ?? 0) > 1 )) throw new Error('Input must be a valid number')
+    if (number === '') return ''
+    if (
+        isNaN(parseFloat(number)) ||
+        number.match(/\s/) ||
+        (number.match(/[.]/giu)?.length ?? 0) > 1
+    )
+        throw new Error('Input must be a valid number')
     let string = number
     string = string.replace(/,/giu, '')
     string = string.replace(/^0+/u, '')

@@ -14,21 +14,22 @@ describe('Strings should end with punctuation', () => {
         expect(endWithPunctuation('Hello world', '.')).toBe('Hello world.')
         expect(endWithPunctuation('Hello world?', '.')).toBe('Hello world?')
         expect(endWithPunctuation('Hello world!', '.')).toBe('Hello world!')
-    
+
         expect(endWithPunctuation('Hello world', '?')).toBe('Hello world?')
         expect(endWithPunctuation('Hello world?', '?')).toBe('Hello world?')
         expect(endWithPunctuation('Hello world!', '?')).toBe('Hello world!')
-    
+
         expect(endWithPunctuation('Hello world', '!')).toBe('Hello world!')
         expect(endWithPunctuation('Hello world?', '!')).toBe('Hello world?')
         expect(endWithPunctuation('Hello world!', '!')).toBe('Hello world!')
     })
-    
+
     test('if the second parameter is multiple characters, ignore it', () => {
         expect(endWithPunctuation('Hello world', '!!')).toBe('Hello world.')
     })
 })
 
+// eslint-disable-next-line max-lines-per-function -- still readable
 describe('Formats a number with thousands separators', () => {
     test('Base case: empty strings should not change', () => {
         expect(formatNumber('')).toBe('')
@@ -61,14 +62,28 @@ describe('Formats a number with thousands separators', () => {
         expect(formatNumber('211.')).toBe('211')
     })
 
-    test('strings that aren\'t valid numbers throw error', () => {
-        expect(() => { formatNumber('hello') }).toThrow()
-        expect(() => { formatNumber('hello 12') }).toThrow()
-        expect(() => { formatNumber('1 12') }).toThrow()
-        expect(() => { formatNumber(' 12') }).toThrow()
-        expect(() => { formatNumber('12 ') }).toThrow()
-        expect(() => { formatNumber('12 .000') }).toThrow()
-        expect(() => { formatNumber('3.1415.9') }).toThrow()
+    test("strings that aren't valid numbers throw error", () => {
+        expect(() => {
+            formatNumber('hello')
+        }).toThrow()
+        expect(() => {
+            formatNumber('hello 12')
+        }).toThrow()
+        expect(() => {
+            formatNumber('1 12')
+        }).toThrow()
+        expect(() => {
+            formatNumber(' 12')
+        }).toThrow()
+        expect(() => {
+            formatNumber('12 ')
+        }).toThrow()
+        expect(() => {
+            formatNumber('12 .000')
+        }).toThrow()
+        expect(() => {
+            formatNumber('3.1415.9')
+        }).toThrow()
     })
 })
 
@@ -95,12 +110,12 @@ describe('Sentence case: First word of every sentence is capitalized', () => {
         expect(sentenceCase('Hello world. Hello world.')).toBe('Hello world. Hello world.')
     })
 
-    test('Colons don\'t count as punctuation here', () => {
+    test("Colons don't count as punctuation here", () => {
         expect(sentenceCase('Items after colons: Should be lowercase')).toBe(
             'Items after colons: should be lowercase'
         )
         expect(sentenceCase('Items after colons: should be lowercase')).toBe(
-        'Items after colons: should be lowercase'
-    )
+            'Items after colons: should be lowercase'
+        )
     })
 })
