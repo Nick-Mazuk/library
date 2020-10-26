@@ -1,3 +1,4 @@
+/* eslint-disable no-secrets/no-secrets -- urls will often look like secrets */
 import {
     isValidYouTubeVideoUrl,
     isValidYouTubeUrl,
@@ -5,8 +6,6 @@ import {
     isValidYouTubeChannelUrl,
     getYouTubeChannelId,
 } from '../youtube'
-
-/* eslint-disable no-secrets/no-secrets -- urls will often look like secrets */
 
 // eslint-disable-next-line max-lines-per-function -- but still readable
 describe('should detect valid YouTube urls', () => {
