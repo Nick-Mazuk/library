@@ -229,8 +229,8 @@ describe('test if valid channel urls', () => {
     test('base case: if empty string return false', () => {
         expect(isYouTubeChannelUrl('')).toBe(false)
     })
-    test('base case: if not a valid video url, return empty string', () => {
-        expect(isYouTubeChannelUrl('this is not a valid video url')).toBe(false)
+    test('base case: if not a valid url, return empty string', () => {
+        expect(isYouTubeChannelUrl('this is not a valid url')).toBe(false)
     })
     test("base case: if there isn't a path", () => {
         expect(isYouTubeChannelUrl('https://youtube.com')).toBe(false)
@@ -238,6 +238,7 @@ describe('test if valid channel urls', () => {
     })
     test("if it's a valid video url, return false", () => {
         expect(isYouTubeChannelUrl('https://youtu.be/dQw4w9WgXcQ')).toBe(false)
+        expect(isYouTubeChannelUrl('https://www.youtube.com/embed/dQw4w9WgXcQ')).toBe(false)
     })
     test("if it's a valid playlist url, return false", () => {
         expect(
