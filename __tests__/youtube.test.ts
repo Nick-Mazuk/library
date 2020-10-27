@@ -38,6 +38,9 @@ describe('should detect valid YouTube urls', () => {
             isYouTubeUrl('https://www.youtube.com/playlist?list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA')
         ).toBe(true)
     })
+    test('embeds should return true', () => {
+        expect(isYouTubeUrl('https://www.youtube.com/embed/dQw4w9WgXcQ')).toBe(true)
+    })
     test('channels should return true', () => {
         expect(isYouTubeUrl('https://www.youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw')).toBe(true)
     })
@@ -45,11 +48,15 @@ describe('should detect valid YouTube urls', () => {
         expect(isYouTubeUrl('https://studio.youtube.com/channel/UCV0kE6VObGM1hX9HgUJj2eA')).toBe(
             false
         )
-        expect(isYouTubeUrl('https://studio.youtube.com/video/dBof6dPaXSA/edit/basic')).toBe(false)
+        expect(isYouTubeUrl('https://studio.youtube.com/video/dQw4w9WgXcQ/edit/basic')).toBe(false)
     })
     test('expect strings in the "share video" without id to return false', () => {
         expect(isYouTubeUrl('https://youtu.be/')).toBe(false)
         expect(isYouTubeUrl('https://youtu.be')).toBe(false)
+    })
+    test('expect strings in the "share video" with extra paths should return false', () => {
+        expect(isYouTubeUrl('https://youtu.be/embed/lskdjf')).toBe(false)
+        expect(isYouTubeUrl('https://youtu.be/playlist/lkjsdfl')).toBe(false)
     })
     test('variations on YouTube domains should be false', () => {
         expect(isYouTubeUrl('https://www.youtu.be/dQw4w9WgXcQ')).toBe(false)
@@ -103,6 +110,10 @@ describe('Should detect valid YouTube video urls', () => {
                 'https://www.youtube.com/watch?v=3st2Hk8G-QI&list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA'
             )
         ).toBe(true)
+    })
+    test('expect embeds to be true', () => {
+        expect(isYouTubeVideoUrl('https://www.youtube.com/embed/dQw4w9WgXcQ')).toBe(true)
+        expect(isYouTubeVideoUrl('https://www.youtube.com/embed/dQw4w9WgXcQ?t=81')).toBe(true)
     })
     test('expect both http to also be true', () => {
         expect(isYouTubeVideoUrl('http://youtu.be/dQw4w9WgXcQ')).toBe(true)
@@ -203,6 +214,14 @@ describe('gets YouTube video ids', () => {
                 'https://www.youtube.com/watch?t=1&list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA&v=w4w9WgXcQ__23'
             )
         ).toBe('w4w9WgXcQ__23')
+    })
+    test('for embeds', () => {
+        expect(getYouTubeVideoId('https://www.youtube.com/embed/dQw4w9WgXcQ')).toBe('dQw4w9WgXcQ')
+    })
+    test('for embeds with parameters', () => {
+        expect(getYouTubeVideoId('https://www.youtube.com/embed/dQw4w9WgXcQ?t=81')).toBe(
+            'dQw4w9WgXcQ'
+        )
     })
 })
 

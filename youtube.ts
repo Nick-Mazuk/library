@@ -1,14 +1,15 @@
 export const isYouTubeUrl = (url: string): boolean => {
     if (url.match(/^(https:\/\/)?(www\.)?youtube\.com.+/u)) return true
     if (url.match(/^(http:\/\/)?(www\.)?youtube\.com.+/u)) return true
-    if (url.match(/^(https:\/\/)?youtu\.be\/.+/u)) return true
-    if (url.match(/^(http:\/\/)?youtu\.be\/.+/u)) return true
+    if (url.match(/^(https:\/\/)?youtu\.be\/?[^/]+$/u)) return true
+    if (url.match(/^(http:\/\/)?youtu\.be\/?[^/]+$/u)) return true
     return false
 }
 
 export const isYouTubeVideoUrl = (url: string): boolean => {
     if (!isYouTubeUrl(url)) return false
     if (url.match(/watch\?v=/u)) return true
+    if (url.match(/embed\/[^/]*/u)) return true
     if (url.match(/youtu\.be/u)) return true
     return false
 }
@@ -19,6 +20,11 @@ export const isYouTubeVideoUrl = (url: string): boolean => {
 export const getYouTubeVideoId = (url: string): string => {
     if (!isYouTubeUrl(url)) return ''
     if (url.match(/youtu\.be\//u)) return url.split(/(youtu\.be\/)|\?/u)[2]
+    if (url.match(/embed\/[^/]*/u)) {
+        const parsedUrl = new URL(url.startsWith('http') ? url : `https://${url}`)
+        const paths = parsedUrl.pathname.split('/')
+        return paths[paths.length - 1]
+    }
     const urlParameters = new URLSearchParams(url.split('?')[1])
     return urlParameters.get('v') ?? ''
 }
