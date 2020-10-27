@@ -1,4 +1,4 @@
-export const isValidYouTubeUrl = (url: string): boolean => {
+export const isYouTubeUrl = (url: string): boolean => {
     if (url.match(/^(https:\/\/)?(www\.)?youtube\.com.+/u)) return true
     if (url.match(/^(http:\/\/)?(www\.)?youtube\.com.+/u)) return true
     if (url.match(/^(https:\/\/)?youtu\.be\/.+/u)) return true
@@ -6,8 +6,8 @@ export const isValidYouTubeUrl = (url: string): boolean => {
     return false
 }
 
-export const isValidYouTubeVideoUrl = (url: string): boolean => {
-    if (!isValidYouTubeUrl(url)) return false
+export const isYouTubeVideoUrl = (url: string): boolean => {
+    if (!isYouTubeUrl(url)) return false
     if (url.match(/watch\?v=/u)) return true
     if (url.match(/youtu\.be/u)) return true
     return false
@@ -17,22 +17,22 @@ export const isValidYouTubeVideoUrl = (url: string): boolean => {
    and do not have a defined character set */
 
 export const getYouTubeVideoId = (url: string): string => {
-    if (!isValidYouTubeUrl(url)) return ''
+    if (!isYouTubeUrl(url)) return ''
     if (url.match(/youtu\.be\//u)) return url.split(/(youtu\.be\/)|\?/u)[2]
     const urlParameters = new URLSearchParams(url.split('?')[1])
     return urlParameters.get('v') ?? ''
 }
 
-export const isValidYouTubeChannelUrl = (url: string): boolean => {
-    if (!isValidYouTubeUrl(url)) return false
-    if (isValidYouTubeVideoUrl(url)) return false
+export const isYouTubeChannelUrl = (url: string): boolean => {
+    if (!isYouTubeUrl(url)) return false
+    if (isYouTubeVideoUrl(url)) return false
     if (url.match(/\/playlist/u)) return false
     if (url.endsWith('youtube.com') || url.endsWith('youtube.com/')) return false
     return true
 }
 
 export const getYouTubeChannelId = (url: string): string => {
-    if (!isValidYouTubeChannelUrl(url)) return ''
+    if (!isYouTubeChannelUrl(url)) return ''
     const parsedUrl = new URL(url.startsWith('http') ? url : `https://${url}`)
     const paths = parsedUrl.pathname.split('/')
     return paths[paths.length - 1]
