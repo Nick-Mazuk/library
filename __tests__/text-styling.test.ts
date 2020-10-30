@@ -1,4 +1,4 @@
-import { sentenceCase, endWithPunctuation, formatNumber } from '../text-styling'
+import { sentenceCase, endWithPunctuation } from '../text-styling'
 
 describe('Strings should end with punctuation', () => {
     test('Base case: empty strings should not get punctuation', () => {
@@ -26,64 +26,6 @@ describe('Strings should end with punctuation', () => {
 
     test('if the second parameter is multiple characters, ignore it', () => {
         expect(endWithPunctuation('Hello world', '!!')).toBe('Hello world.')
-    })
-})
-
-// eslint-disable-next-line max-lines-per-function -- still readable
-describe('Formats a number with thousands separators', () => {
-    test('Base case: empty strings should not change', () => {
-        expect(formatNumber('')).toBe('')
-    })
-
-    test('strings already formatted should not change', () => {
-        expect(formatNumber('100')).toBe('100')
-        expect(formatNumber('1,000')).toBe('1,000')
-        expect(formatNumber('1,000.0')).toBe('1,000.0')
-    })
-
-    test('add thousand separators', () => {
-        expect(formatNumber('1000')).toBe('1,000')
-        expect(formatNumber('10,0000,0')).toBe('1,000,000')
-        expect(formatNumber('31415926535')).toBe('31,415,926,535')
-        expect(formatNumber('123.123123123')).toBe('123.123123123')
-    })
-
-    test('remove unneeded leading zeros', () => {
-        expect(formatNumber('000100')).toBe('100')
-        expect(formatNumber('000100.')).toBe('100')
-        expect(formatNumber('0,00100.0')).toBe('100.0')
-    })
-    test('zeros after the decimal should be kept', () => {
-        expect(formatNumber('1.0')).toBe('1.0')
-    })
-
-    test('remove dangling periods', () => {
-        expect(formatNumber('1.')).toBe('1')
-        expect(formatNumber('211.')).toBe('211')
-    })
-
-    test("strings that aren't valid numbers throw error", () => {
-        expect(() => {
-            formatNumber('hello')
-        }).toThrow()
-        expect(() => {
-            formatNumber('hello 12')
-        }).toThrow()
-        expect(() => {
-            formatNumber('1 12')
-        }).toThrow()
-        expect(() => {
-            formatNumber(' 12')
-        }).toThrow()
-        expect(() => {
-            formatNumber('12 ')
-        }).toThrow()
-        expect(() => {
-            formatNumber('12 .000')
-        }).toThrow()
-        expect(() => {
-            formatNumber('3.1415.9')
-        }).toThrow()
     })
 })
 
