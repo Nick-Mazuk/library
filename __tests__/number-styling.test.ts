@@ -112,6 +112,7 @@ describe('formats number completely', () => {
         ['1.0', '1.0', 'zeros after the decimal should be kept'],
         ['0.000', '0.000', 'zeros after the decimal should be kept'],
         ['1.', '1', 'no dangling periods'],
+        ['0.', '0', 'no dangling periods'],
         ['211.', '211', 'no dangling periods'],
     ]
     test.each(numbers)('"%s" should be "%s": "%s"', (number, result) => {
