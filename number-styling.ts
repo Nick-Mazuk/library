@@ -1,10 +1,7 @@
 export const stringIsNumber = (number: string): boolean => {
     if (number === '') return false
     if (isNaN(parseFloat(number))) return false
-    if (number.match(/\s/u)) return false
-    if ((number.match(/[.]/giu)?.length ?? 0) > 1) return false
-    if (number.match(/\d+\.\d+,\d+/u)) return false
-    return true
+    return Boolean(number.match(/^[\d,]*\.?[\d]*$/u))
 }
 
 export const addThousandsSeparators = (string: string): string => {

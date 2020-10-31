@@ -9,6 +9,7 @@ const invalidNumbers = [
     ['', 'is empty string'],
     ['hello', 'has letters'],
     ['hello 12', 'has letters'],
+    ['3.1@abc4159', 'has letters'],
     ['1 12', 'has spaces'],
     [' 12', 'has spaces'],
     ['12 ', 'has spaces'],
@@ -29,6 +30,12 @@ describe('Detect if a string is a number', () => {
         '10,0000,0',
         '31415926535',
         '123.123123123',
+        '0',
+        '1',
+        '0.',
+        '1.',
+        '000100.',
+        '.123',
     ]
     test.each(validNumbers)('%s is a valid number', (string) => {
         expect(stringIsNumber(string)).toBe(true)
