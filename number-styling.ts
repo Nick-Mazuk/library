@@ -17,7 +17,8 @@ export const addThousandsSeparators = (string: string): string => {
 export const truncateDecimals = (string: string, decimals: number): string => {
     if (!stringIsNumber(string)) return ''
     const parts = string.split('.')
-    if (parts[1]) parts[1] = parts[1].slice(0, Math.max(0, decimals))
+    if (!parts[1]) return string
+    parts[1] = parts[1].slice(0, Math.max(0, decimals))
     let number = parts.join('.')
     number = number.replace(/[.]+$/u, '')
     return number

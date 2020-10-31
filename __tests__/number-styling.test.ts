@@ -93,6 +93,7 @@ describe('truncates decimal', () => {
         ['3.14', 5, '3.14'],
         ['3.141', 5, '3.141'],
         ['3.1415', 5, '3.1415'],
+        ['3.', 5, '3.'],
     ]
     test.each(numbers)(
         'decimals are truncated: "%s" truncated by "%s" results in "%s"',
