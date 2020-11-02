@@ -189,6 +189,10 @@ describe('turns numbers into percentages', () => {
         ['0.314159', 0, '31%'],
         ['0.271828', 1, '27.2%'],
         [0.123, 1, '12.3%'],
+        [0.123, 2, '12.3%'],
+        [0.12345, 2, '12.35%'],
+        ['1.234', 0, '123%'],
+        ['12.34', 0, '1,234%'],
     ]
     test.each(numbers)(
         'turned to percentage: "%s" truncated by "%s" results in "%s"',

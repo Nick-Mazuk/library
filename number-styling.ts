@@ -26,8 +26,9 @@ export const truncateDecimals = (input: string | number, decimals: number): stri
 }
 
 export const roundDecimals = (input: string | number, decimals: number): string => {
+    if (typeof input === 'number') return input.toFixed(decimals)
     if (!isNumber(input)) return ''
-    const parts = String(input).split('.')
+    const parts = input.split('.')
     if (!parts[1]) return String(input)
     const roundingDigit = parts[1].slice(decimals, decimals + 1)
     parts[1] = parts[1].slice(0, Math.max(0, decimals))
