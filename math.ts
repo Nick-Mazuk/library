@@ -1,3 +1,4 @@
+// input is [value, weight][]
 export const weightedAverage = (stats: [number, number][]): number => {
     let sum = 0
     let total = 0
