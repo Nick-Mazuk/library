@@ -4,7 +4,8 @@ type Parameters = {
 }
 
 export const createFacebookShareLink = (url: string, parameters?: Parameters): string => {
-    return `https://www.facebook.com/sharer/sharer.php?u=${url}${
-        parameters?.display ? `&display=${parameters.display}` : ''
-    }${parameters?.redirectTo ? `&redirect_uri=${parameters.redirectTo}` : ''}`
+    let shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`
+    if (parameters?.display) shareUrl += `&display=${parameters.display}`
+    if (parameters?.redirectTo) shareUrl += `&redirect_uri=${parameters.redirectTo}`
+    return shareUrl
 }

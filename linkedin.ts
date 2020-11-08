@@ -5,9 +5,9 @@ type Parameters = {
 }
 
 export const createLinkedinShareLink = (url: string, parameters?: Parameters): string => {
-    return `https://www.linkedin.com/shareArticle?mini=true&url=${url}${
-        parameters?.title ? `&title=${parameters.title}` : ''
-    }${parameters?.summary ? `&summary=${parameters.summary}` : ''}${
-        parameters?.source ? `&source=${parameters.source}` : ''
-    }`
+    let shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}`
+    if (parameters?.title) shareUrl += `&title=${parameters.title}`
+    if (parameters?.summary) shareUrl += `&summary=${parameters.summary}`
+    if (parameters?.source) shareUrl += `&source=${parameters.source}`
+    return shareUrl
 }

@@ -4,7 +4,8 @@ type Parameters = {
 }
 
 export const createTwitterShareLink = (url: string, parameters?: Parameters): string => {
-    return `http://twitter.com/intent/tweet?url=${url}${
-        parameters?.text ? `&text=${parameters.text}` : ''
-    }${parameters?.hashtags ? `&hashtags=${parameters.hashtags.join(',')}` : ''}`
+    let shareUrl = `http://twitter.com/intent/tweet?url=${url}`
+    if (parameters?.text) shareUrl += `&text=${parameters.text}`
+    if (parameters?.hashtags) shareUrl += `&hashtags=${parameters.hashtags.join(',')}`
+    return shareUrl
 }
