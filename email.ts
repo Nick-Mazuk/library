@@ -1,5 +1,5 @@
 type Props = {
-    to: string
+    to?: string
     subject?: string
     body?: string
     cc?: string
@@ -7,7 +7,8 @@ type Props = {
 }
 
 export const createMailtoLink = ({ to, subject, body, cc, bcc }: Props): string => {
-    let mailto = `mailto:${to}`
+    let mailto = `mailto:`
+    if (to) mailto += to
     if (subject) mailto += `&subject=${subject}`
     if (body) mailto += `&body=${body}`
     if (cc) mailto += `&cc=${cc}`
