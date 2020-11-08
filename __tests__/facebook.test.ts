@@ -12,7 +12,6 @@ describe('creates share url', () => {
         const sharedUrl = createFacebookShareLink('https://sharethisthing.com', {
             redirectTo: url,
         })
-        expect(sharedUrl).toMatch(`https://www.facebook.com/sharer/sharer.php`)
         expect(sharedUrl).toMatch(`redirect_uri=${url}`)
     })
 
@@ -21,7 +20,6 @@ describe('creates share url', () => {
         const sharedUrl = createFacebookShareLink('https://sharethisthing.com', {
             display: display,
         })
-        expect(sharedUrl).toMatch(`https://www.facebook.com/sharer/sharer.php`)
         expect(sharedUrl).toMatch(`display=${display}`)
     })
 })
