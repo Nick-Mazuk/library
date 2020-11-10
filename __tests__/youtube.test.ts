@@ -1,4 +1,3 @@
-/* eslint-disable no-secrets/no-secrets -- urls will often look like secrets */
 import {
     isYouTubeVideoUrl,
     isYouTubeUrl,
@@ -7,299 +6,360 @@ import {
     getYouTubeChannelId,
 } from '../youtube'
 
-// eslint-disable-next-line max-lines-per-function -- but still readable
+/* eslint-disable no-secrets/no-secrets -- urls will often look like secrets */
+const invalidUrls = [
+    '',
+    'this is not a valid video url',
+    'https://studio.youtube.com/channel/UCV0kE6VObGM1hX9HgUJj2eA',
+    'https://studio.youtube.com/video/dQw4w9WgXcQ/edit/basic',
+    'https://youtu.be/',
+    'https://youtu.be',
+    'https://youtu.be/embed/lskdjf',
+    'https://youtu.be/playlist/lkjsdfl',
+    'https://www.youtu.be/dQw4w9WgXcQ',
+    'https://www.youtube/dQw4w9WgXcQ',
+    'https://www.youtu.b/dQw4w9WgXcQ',
+    '//youtu.be/dQw4w9WgXcQ',
+    '/youtu.be/dQw4w9WgXcQ',
+    'ftp://youtu.be/dQw4w9WgXcQ',
+    'https://www.facebook.com/dQw4w9WgXcQ',
+    'https://google.com/dQw4w9WgXcQ',
+    'https://youtu.b/dQw4w9WgXcQ',
+    'https://www.youtu.be/dQw4w9WgXcQ',
+    'https://youtube/dQw4w9WgXcQ',
+    'https://facebook.com/watch?v=dQw4w9WgXcQ',
+]
+
+type ValidUrl = [
+    string,
+    {
+        type: 'video' | 'channel' | 'playlist' | 'homepage' | 'other'
+        id?: string
+        timestamp?: string
+        playlist?: string
+        subscribe?: boolean
+    }
+]
+
+const validUrls: ValidUrl[] = [
+    [
+        'https://youtube.com',
+        {
+            type: 'homepage',
+        },
+    ],
+    [
+        'https://youtube.com/',
+        {
+            type: 'homepage',
+        },
+    ],
+    [
+        'https://youtu.be/dQw4w9WgXcQ',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+        },
+    ],
+    [
+        'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+        },
+    ],
+    [
+        'https://youtube.com/watch?v=dQw4w9WgXcQ',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+        },
+    ],
+    [
+        'http://youtu.be/dQw4w9WgXcQ',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+        },
+    ],
+    [
+        'http://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+        },
+    ],
+    [
+        'http://youtube.com/watch?v=dQw4w9WgXcQ',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+        },
+    ],
+    [
+        'https://youtu.be/sXQxhojSdZM',
+        {
+            type: 'video',
+            id: 'sXQxhojSdZM',
+        },
+    ],
+    [
+        'https://youtu.be/dQw4w9WgXcQ?t=1',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+            timestamp: '1',
+        },
+    ],
+    [
+        'https://youtu.be/dQw4w9WgXcQ?t=1',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+            timestamp: '81',
+        },
+    ],
+    [
+        'https://www.youtube.com/watch?v=sXQxhojSdZM',
+        {
+            type: 'video',
+            id: 'sXQxhojSdZM',
+        },
+    ],
+    [
+        'https://www.youtube.com/watch?v=dQw4w9WgXcQ?t=1',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+            timestamp: '1',
+        },
+    ],
+    [
+        'https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+            timestamp: '1',
+        },
+    ],
+    [
+        'https://www.youtube.com/watch?v=sXQxhojSdZM&t=81',
+        {
+            type: 'video',
+            id: 'sXQxhojSdZM',
+            timestamp: '81',
+        },
+    ],
+    [
+        'https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1&feature=youtu.be',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+            timestamp: '1',
+        },
+    ],
+    [
+        'https://www.youtube.com/watch?v=sXQxhojSdZM&t=81&feature=youtu.be',
+        {
+            type: 'video',
+            id: 'sXQxhojSdZM',
+            timestamp: '81',
+        },
+    ],
+    [
+        'https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1&feature=youtu.be',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+            timestamp: '1',
+        },
+    ],
+    [
+        'https://www.youtube.com/watch?v=3st2Hk8G-QI&list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA',
+        {
+            type: 'video',
+            id: '3st2Hk8G-QI',
+            playlist: 'PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA',
+        },
+    ],
+    [
+        'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+        },
+    ],
+    [
+        'https://www.youtube.com/embed/dQw4w9WgXcQ?t=314',
+        {
+            type: 'video',
+            id: 'dQw4w9WgXcQ',
+            timestamp: '314',
+        },
+    ],
+    [
+        'https://www.youtube.com/playlist?list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA',
+        {
+            type: 'playlist',
+            id: 'PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA',
+        },
+    ],
+    [
+        'https://www.youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw',
+        {
+            type: 'channel',
+            id: 'UCuAXFkgsw1L7xaCfnd5JJOw',
+        },
+    ],
+    [
+        'youtube.com/user/channel_name',
+        {
+            type: 'channel',
+            id: 'channel_name',
+        },
+    ],
+    [
+        'youtube.com/channel/UCUZHFZ9jIKrLroW8LcyJEQQ',
+        {
+            type: 'channel',
+            id: 'UCUZHFZ9jIKrLroW8LcyJEQQ',
+        },
+    ],
+    [
+        'youtube.com/c/YouTubeCreators',
+        {
+            type: 'channel',
+            id: 'YouTubeCreators',
+        },
+    ],
+    [
+        'youtube.com/YouTubeCreators',
+        {
+            type: 'channel',
+            id: 'YouTubeCreators',
+        },
+    ],
+    [
+        'youtube.com/user/channel_name',
+        {
+            type: 'channel',
+            id: 'channel_name',
+            subscribe: true,
+        },
+    ],
+    [
+        'youtube.com/channel/UCUZHFZ9jIKrLroW8LcyJEQQ',
+        {
+            type: 'channel',
+            id: 'UCUZHFZ9jIKrLroW8LcyJEQQ',
+            subscribe: true,
+        },
+    ],
+    [
+        'youtube.com/c/YouTubeCreators',
+        {
+            type: 'channel',
+            id: 'YouTubeCreators',
+            subscribe: true,
+        },
+    ],
+    [
+        'youtube.com/YouTubeCreators',
+        {
+            type: 'channel',
+            id: 'YouTubeCreators',
+            subscribe: true,
+        },
+    ],
+]
+
+/* eslint-enable no-secrets/no-secrets -- urls will often look like secrets */
+
 describe('should detect valid YouTube urls', () => {
-    test('videos should return true', () => {
-        expect(isYouTubeUrl('https://youtu.be/dQw4w9WgXcQ')).toBe(true)
-        expect(isYouTubeUrl('https://youtu.be/dQw4w9WgXcQ?t=1')).toBe(true)
-        expect(isYouTubeUrl('https://www.youtube.com/watch?v=dQw4w9WgXcQ')).toBe(true)
-        expect(isYouTubeUrl('https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1')).toBe(true)
-        expect(
-            isYouTubeUrl('https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1&feature=youtu.be')
-        ).toBe(true)
-        expect(
-            isYouTubeUrl(
-                'https://www.youtube.com/watch?v=3st2Hk8G-QI&list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA'
-            )
-        ).toBe(true)
+    test.each(validUrls)('valid url "%s" returns true', (url) => {
+        expect(isYouTubeUrl(url)).toBe(true)
     })
-    test('all YouTube domains should return true', () => {
-        expect(isYouTubeUrl('https://youtu.be/dQw4w9WgXcQ')).toBe(true)
-        expect(isYouTubeUrl('https://www.youtube.com/dQw4w9WgXcQ')).toBe(true)
-        expect(isYouTubeUrl('https://youtube.com/dQw4w9WgXcQ')).toBe(true)
-    })
-    test('http should also be supported', () => {
-        expect(isYouTubeUrl('http://youtu.be/dQw4w9WgXcQ')).toBe(true)
-        expect(isYouTubeUrl('http://www.youtube.com/dQw4w9WgXcQ')).toBe(true)
-        expect(isYouTubeUrl('http://youtube.com/dQw4w9WgXcQ')).toBe(true)
-    })
-    test('playlists should return true', () => {
-        expect(
-            isYouTubeUrl('https://www.youtube.com/playlist?list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA')
-        ).toBe(true)
-    })
-    test('embeds should return true', () => {
-        expect(isYouTubeUrl('https://www.youtube.com/embed/dQw4w9WgXcQ')).toBe(true)
-    })
-    test('channels should return true', () => {
-        expect(isYouTubeUrl('https://www.youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw')).toBe(true)
-    })
-    test('YouTube studio should return false false', () => {
-        expect(isYouTubeUrl('https://studio.youtube.com/channel/UCV0kE6VObGM1hX9HgUJj2eA')).toBe(
-            false
-        )
-        expect(isYouTubeUrl('https://studio.youtube.com/video/dQw4w9WgXcQ/edit/basic')).toBe(false)
-    })
-    test('expect strings in the "share video" without id to return false', () => {
-        expect(isYouTubeUrl('https://youtu.be/')).toBe(false)
-        expect(isYouTubeUrl('https://youtu.be')).toBe(false)
-    })
-    test('expect strings in the "share video" with extra paths should return false', () => {
-        expect(isYouTubeUrl('https://youtu.be/embed/lskdjf')).toBe(false)
-        expect(isYouTubeUrl('https://youtu.be/playlist/lkjsdfl')).toBe(false)
-    })
-    test('variations on YouTube domains should be false', () => {
-        expect(isYouTubeUrl('https://www.youtu.be/dQw4w9WgXcQ')).toBe(false)
-        expect(isYouTubeUrl('https://www.youtube/dQw4w9WgXcQ')).toBe(false)
-        expect(isYouTubeUrl('https://www.youtu.b/dQw4w9WgXcQ')).toBe(false)
-        expect(isYouTubeUrl('//youtu.be/dQw4w9WgXcQ')).toBe(false)
-        expect(isYouTubeUrl('/youtu.be/dQw4w9WgXcQ')).toBe(false)
-        expect(isYouTubeUrl('ftp://youtu.be/dQw4w9WgXcQ')).toBe(false)
-    })
-    test('other domains should be false', () => {
-        expect(isYouTubeUrl('https://www.facebook.com/dQw4w9WgXcQ')).toBe(false)
-        expect(isYouTubeUrl('https://google.com/dQw4w9WgXcQ')).toBe(false)
+    test.each(invalidUrls)('invalid url "%s" returns false', (url) => {
+        expect(isYouTubeUrl(url)).toBe(false)
     })
 })
 
-// eslint-disable-next-line max-lines-per-function -- still readable
 describe('Should detect valid YouTube video urls', () => {
-    test('base case: empty string should return false', () => {
-        expect(isYouTubeVideoUrl('')).toBe(false)
+    test.each(invalidUrls)('invalid youtube url "%s" returns false', (url) => {
+        expect(isYouTubeVideoUrl(url)).toBe(false)
     })
-    test('base case: youtube homepage returns false', () => {
-        expect(isYouTubeVideoUrl('https://youtube.com')).toBe(false)
-    })
-    test('expect strings in the "share video" format to be true', () => {
-        expect(isYouTubeVideoUrl('https://youtu.be/dQw4w9WgXcQ')).toBe(true)
-        expect(isYouTubeVideoUrl('https://youtu.be/sXQxhojSdZM')).toBe(true)
-    })
-    test('expect strings in the "share video" with time string format to be true', () => {
-        expect(isYouTubeVideoUrl('https://youtu.be/dQw4w9WgXcQ?t=1')).toBe(true)
-        expect(isYouTubeVideoUrl('https://youtu.be/dQw4w9WgXcQ?t=81')).toBe(true)
-    })
-    test('expect strings in the "url bar" format to be true', () => {
-        expect(isYouTubeVideoUrl('https://www.youtube.com/watch?v=dQw4w9WgXcQ')).toBe(true)
-        expect(isYouTubeVideoUrl('https://www.youtube.com/watch?v=sXQxhojSdZM')).toBe(true)
-    })
-    test('expect strings in the "url bar" with time string format to be true', () => {
-        expect(isYouTubeVideoUrl('https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1')).toBe(true)
-        expect(isYouTubeVideoUrl('https://www.youtube.com/watch?v=sXQxhojSdZM&t=81')).toBe(true)
-    })
-    test('expect strings in the "url bar" with "feature" parameter to be true', () => {
-        expect(
-            isYouTubeVideoUrl('https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1&feature=youtu.be')
-        ).toBe(true)
-        expect(
-            isYouTubeVideoUrl('https://www.youtube.com/watch?v=sXQxhojSdZM&t=81&feature=youtu.be')
-        ).toBe(true)
-    })
-    test('expect videos as part of a playlist to be true', () => {
-        expect(
-            isYouTubeVideoUrl(
-                'https://www.youtube.com/watch?v=3st2Hk8G-QI&list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA'
-            )
-        ).toBe(true)
-    })
-    test('expect embeds to be true', () => {
-        expect(isYouTubeVideoUrl('https://www.youtube.com/embed/dQw4w9WgXcQ')).toBe(true)
-        expect(isYouTubeVideoUrl('https://www.youtube.com/embed/dQw4w9WgXcQ?t=81')).toBe(true)
-    })
-    test('expect both http to also be true', () => {
-        expect(isYouTubeVideoUrl('http://youtu.be/dQw4w9WgXcQ')).toBe(true)
-        expect(isYouTubeVideoUrl('http://youtu.be/dQw4w9WgXcQ?t=1')).toBe(true)
-        expect(isYouTubeVideoUrl('http://www.youtube.com/watch?v=dQw4w9WgXcQ')).toBe(true)
-        expect(isYouTubeVideoUrl('http://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1')).toBe(true)
-        expect(
-            isYouTubeVideoUrl('http://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1&feature=youtu.be')
-        ).toBe(true)
-        expect(
-            isYouTubeVideoUrl(
-                'http://www.youtube.com/watch?v=3st2Hk8G-QI&list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA'
-            )
-        ).toBe(true)
-    })
-    test('expect playlist urls to be false', () => {
-        expect(
-            isYouTubeVideoUrl(
-                'https://www.youtube.com/playlist?list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA'
-            )
-        ).toBe(false)
-    })
-    test('expect channel urls to be false', () => {
-        expect(isYouTubeVideoUrl('https://www.youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw')).toBe(
-            false
-        )
-    })
-    test('expect other domains with the same format to be false', () => {
-        expect(isYouTubeVideoUrl('https://youtu.b/dQw4w9WgXcQ')).toBe(false)
-        expect(isYouTubeVideoUrl('https://www.youtu.be/dQw4w9WgXcQ')).toBe(false)
-        expect(isYouTubeVideoUrl('https://youtube/dQw4w9WgXcQ')).toBe(false)
-        expect(isYouTubeVideoUrl('https://facebook.com/watch?v=dQw4w9WgXcQ')).toBe(false)
-    })
+
+    test.each(validUrls.filter((url) => url[1].type !== 'video'))(
+        'youtube url "%s" returns false because it\'s not a video',
+        (url) => {
+            expect(isYouTubeVideoUrl(url)).toBe(false)
+        }
+    )
+
+    test.each(validUrls.filter((url) => url[1].type === 'video'))(
+        'youtube video url "%s" returns true',
+        (url) => {
+            expect(isYouTubeVideoUrl(url)).toBe(true)
+        }
+    )
 })
 
-// eslint-disable-next-line max-lines-per-function -- still readable
 describe('gets YouTube video ids', () => {
-    test('base case: if empty string return empty string', () => {
-        expect(getYouTubeVideoId('')).toBe('')
+    test.each(invalidUrls)('invalid youtube url "%s" returns empty string', (url) => {
+        expect(getYouTubeVideoId(url)).toBe('')
     })
-    test('base case: if not a valid video url, return empty string', () => {
-        expect(getYouTubeVideoId('this is not a valid video url')).toBe('')
-        expect(getYouTubeVideoId('https://youtube.com')).toBe('')
-    })
-    test('for youtu.be urls', () => {
-        expect(getYouTubeVideoId('https://youtu.be/dQw4w9WgXcQ')).toBe('dQw4w9WgXcQ')
-        expect(getYouTubeVideoId('https://youtu.be/dQw4w9WgXcQ__23')).toBe('dQw4w9WgXcQ__23')
-        expect(getYouTubeVideoId('https://youtu.be/w4w9WgXcQ__23')).toBe('w4w9WgXcQ__23')
-    })
-    test('for youtu.be urls with other parameters', () => {
-        expect(getYouTubeVideoId('https://youtu.be/dQw4w9WgXcQ?t=1')).toBe('dQw4w9WgXcQ')
-        expect(
-            getYouTubeVideoId(
-                'https://youtu.be/dQw4w9WgXcQ__23?list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA'
-            )
-        ).toBe('dQw4w9WgXcQ__23')
-        expect(
-            getYouTubeVideoId(
-                'https://youtu.be/w4w9WgXcQ__23?t=1&list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA'
-            )
-        ).toBe('w4w9WgXcQ__23')
-    })
-    test('for youtube.com urls', () => {
-        expect(getYouTubeVideoId('https://www.youtube.com/watch?v=dQw4w9WgXcQ')).toBe('dQw4w9WgXcQ')
-        expect(getYouTubeVideoId('https://www.youtube.com/watch?v=dQw4w9WgXcQ__23')).toBe(
-            'dQw4w9WgXcQ__23'
-        )
-        expect(getYouTubeVideoId('https://www.youtube.com/watch?v=w4w9WgXcQ__23')).toBe(
-            'w4w9WgXcQ__23'
-        )
-    })
-    test('for youtube.com urls with parameters', () => {
-        expect(getYouTubeVideoId('https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1')).toBe(
-            'dQw4w9WgXcQ'
-        )
-        expect(
-            getYouTubeVideoId(
-                'https://www.youtube.com/watch?v=dQw4w9WgXcQ__23&list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA'
-            )
-        ).toBe('dQw4w9WgXcQ__23')
-        expect(
-            getYouTubeVideoId(
-                'https://www.youtube.com/watch?v=w4w9WgXcQ__23&t=1&list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA'
-            )
-        ).toBe('w4w9WgXcQ__23')
-    })
-    test("for youtube.com urls where video isn't the first parameter", () => {
-        expect(getYouTubeVideoId('https://www.youtube.com/watch?t=1&v=dQw4w9WgXcQ')).toBe(
-            'dQw4w9WgXcQ'
-        )
-        expect(
-            getYouTubeVideoId(
-                'https://www.youtube.com/watch?list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA&v=dQw4w9WgXcQ__23'
-            )
-        ).toBe('dQw4w9WgXcQ__23')
-        expect(
-            getYouTubeVideoId(
-                'https://www.youtube.com/watch?t=1&list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA&v=w4w9WgXcQ__23'
-            )
-        ).toBe('w4w9WgXcQ__23')
-    })
-    test('for embeds', () => {
-        expect(getYouTubeVideoId('https://www.youtube.com/embed/dQw4w9WgXcQ')).toBe('dQw4w9WgXcQ')
-    })
-    test('for embeds with parameters', () => {
-        expect(getYouTubeVideoId('https://www.youtube.com/embed/dQw4w9WgXcQ?t=81')).toBe(
-            'dQw4w9WgXcQ'
-        )
-    })
+
+    test.each(validUrls.filter((url) => url[1].type !== 'video'))(
+        'youtube url "%s" returns empty string because it\'s not a video',
+        (url) => {
+            expect(getYouTubeVideoId(url)).toBe('')
+        }
+    )
+
+    test.each(validUrls.filter((url) => url[1].type === 'video'))(
+        'youtube video url "%s" returns correct id',
+        (url, attributes) => {
+            expect(getYouTubeVideoId(url)).toBe(attributes.id)
+        }
+    )
 })
 
 describe('test if valid channel urls', () => {
-    test('base case: if empty string return false', () => {
-        expect(isYouTubeChannelUrl('')).toBe(false)
+    test.each(invalidUrls)('invalid youtube url "%s" returns false', (url) => {
+        expect(isYouTubeChannelUrl(url)).toBe(false)
     })
-    test('base case: if not a valid url, return empty string', () => {
-        expect(isYouTubeChannelUrl('this is not a valid url')).toBe(false)
-    })
-    test("base case: if there isn't a path", () => {
-        expect(isYouTubeChannelUrl('https://youtube.com')).toBe(false)
-        expect(isYouTubeChannelUrl('https://youtube.com/')).toBe(false)
-    })
-    test("if it's a valid video url, return false", () => {
-        expect(isYouTubeChannelUrl('https://youtu.be/dQw4w9WgXcQ')).toBe(false)
-        expect(isYouTubeChannelUrl('https://www.youtube.com/embed/dQw4w9WgXcQ')).toBe(false)
-    })
-    test("if it's a valid playlist url, return false", () => {
-        expect(
-            isYouTubeChannelUrl(
-                'https://www.youtube.com/playlist?list=PLbI7dEs56ocIC2vBf1HYyi6aHi0y4VneA'
-            )
-        ).toBe(false)
-    })
-    test('if legacy user url, return true', () => {
-        expect(isYouTubeChannelUrl('youtube.com/user/channel_name')).toBe(true)
-    })
-    test('if id-based url, return true', () => {
-        expect(isYouTubeChannelUrl('youtube.com/channel/UCUZHFZ9jIKrLroW8LcyJEQQ')).toBe(true)
-    })
-    test('if custom url, return true', () => {
-        expect(isYouTubeChannelUrl('youtube.com/c/YouTubeCreators')).toBe(true)
-    })
-    test('if shortened url, return true', () => {
-        expect(isYouTubeChannelUrl('youtube.com/YouTubeCreators')).toBe(true)
-    })
-    test('if subscribe parameter is present, return true', () => {
-        expect(isYouTubeChannelUrl('youtube.com/user/channel_name?subscribe=1')).toBe(true)
-        expect(
-            isYouTubeChannelUrl('youtube.com/channel/UCUZHFZ9jIKrLroW8LcyJEQQ?subscribe=1')
-        ).toBe(true)
-        expect(isYouTubeChannelUrl('youtube.com/c/YouTubeCreators?subscribe=1')).toBe(true)
-        expect(isYouTubeChannelUrl('youtube.com/YouTubeCreators?subscribe=1')).toBe(true)
-    })
+
+    test.each(validUrls.filter((url) => url[1].type !== 'channel'))(
+        'youtube url "%s" returns false because it\'s not a channel',
+        (url) => {
+            expect(isYouTubeChannelUrl(url)).toBe(false)
+        }
+    )
+
+    test.each(validUrls.filter((url) => url[1].type === 'channel'))(
+        'youtube channel url "%s" returns true',
+        (url) => {
+            expect(isYouTubeChannelUrl(url)).toBe(true)
+        }
+    )
 })
 
 describe('get YT channel id', () => {
-    test('base case: if empty string return false', () => {
-        expect(getYouTubeChannelId('')).toBe('')
+    test.each(invalidUrls)('invalid youtube url "%s" returns empty string', (url) => {
+        expect(getYouTubeChannelId(url)).toBe('')
     })
-    test('base case: if not a valid video url, return empty string', () => {
-        expect(getYouTubeChannelId('this is not a valid video url')).toBe('')
-    })
-    test('legacy url', () => {
-        expect(getYouTubeChannelId('youtube.com/user/channel_name')).toBe('channel_name')
-        expect(getYouTubeChannelId('youtube.com/user/channel_name?subscribe=1')).toBe(
-            'channel_name'
-        )
-    })
-    test('id-based url', () => {
-        expect(getYouTubeChannelId('youtube.com/channel/UCUZHFZ9jIKrLroW8LcyJEQQ')).toBe(
-            'UCUZHFZ9jIKrLroW8LcyJEQQ'
-        )
-        expect(
-            getYouTubeChannelId('youtube.com/channel/UCUZHFZ9jIKrLroW8LcyJEQQ?subscribe=1')
-        ).toBe('UCUZHFZ9jIKrLroW8LcyJEQQ')
-    })
-    test('custom url', () => {
-        expect(getYouTubeChannelId('youtube.com/c/YouTubeCreators')).toBe('YouTubeCreators')
-        expect(getYouTubeChannelId('youtube.com/c/YouTubeCreators?subscribe=1')).toBe(
-            'YouTubeCreators'
-        )
-    })
-    test('Shortened url', () => {
-        expect(getYouTubeChannelId('youtube.com/YouTubeCreators')).toBe('YouTubeCreators')
-        expect(getYouTubeChannelId('youtube.com/YouTubeCreators?subscribe=1')).toBe(
-            'YouTubeCreators'
-        )
-    })
+
+    test.each(validUrls.filter((url) => url[1].type !== 'channel'))(
+        'youtube url "%s" returns empty string because it\'s not a channel',
+        (url) => {
+            expect(getYouTubeChannelId(url)).toBe('')
+        }
+    )
+
+    test.each(validUrls.filter((url) => url[1].type === 'channel'))(
+        'youtube channel url "%s" returns correct id',
+        (url, attributes) => {
+            expect(getYouTubeChannelId(url)).toBe(attributes.id)
+        }
+    )
 })

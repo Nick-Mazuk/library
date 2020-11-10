@@ -1,6 +1,6 @@
 export const isYouTubeUrl = (url: string): boolean => {
-    if (url.match(/^(https:\/\/)?(www\.)?youtube\.com.+/u)) return true
-    if (url.match(/^(http:\/\/)?(www\.)?youtube\.com.+/u)) return true
+    if (url.match(/^(https:\/\/)?(www\.)?youtube\.com.*/u)) return true
+    if (url.match(/^(http:\/\/)?(www\.)?youtube\.com.*/u)) return true
     if (url.match(/^(https:\/\/)?youtu\.be\/?[^/]+$/u)) return true
     if (url.match(/^(http:\/\/)?youtu\.be\/?[^/]+$/u)) return true
     return false
