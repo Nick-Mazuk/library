@@ -271,6 +271,12 @@ const validUrls: ValidUrl[] = [
             subscribe: true,
         },
     ],
+    [
+        'https://www.youtube.com/results?search_query=hello&page&utm_source=opensearch',
+        {
+            type: 'other',
+        },
+    ],
 ]
 
 /* eslint-enable no-secrets/no-secrets -- urls will often look like secrets */

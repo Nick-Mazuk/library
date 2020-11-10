@@ -9,3 +9,9 @@ export const createTwitterShareLink = (url: string, parameters?: Parameters): st
     if (parameters?.hashtags) shareUrl += `&hashtags=${parameters.hashtags.join(',')}`
     return shareUrl
 }
+
+export const isTwitterUrl = (url: string): boolean => {
+    if (url.match(/^(https:\/\/)?(www\.)?twitter\.com.*/u)) return true
+    if (url.match(/^(http:\/\/)?(www\.)?twitter\.com.*/u)) return true
+    return false
+}

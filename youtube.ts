@@ -34,6 +34,7 @@ export const isYouTubeChannelUrl = (url: string): boolean => {
     if (isYouTubeVideoUrl(url)) return false
     if (url.match(/\/playlist/u)) return false
     if (url.endsWith('youtube.com') || url.endsWith('youtube.com/')) return false
+    if (url.match(/\/results/u)) return false
     return true
 }
 
