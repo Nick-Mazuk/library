@@ -72,6 +72,13 @@ const validUrls: ValidUrl[] = [
         },
     ],
     [
+        'https://www.facebook.com/facebook/',
+        {
+            type: 'page',
+            id: 'facebook',
+        },
+    ],
+    [
         'https://www.facebook.com/groups/743327632675687/',
         {
             type: 'group',

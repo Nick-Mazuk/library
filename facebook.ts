@@ -19,6 +19,7 @@ export const isFacebookUrl = (url: string): boolean => {
 export const isFacebookPageUrl = (url: string): boolean => {
     if (!isFacebookUrl(url)) return false
     if (url.match(/facebook.com\/[^/]+$/u)) return true
+    if (url.match(/facebook.com\/[^/]+\/$/u)) return true
     return false
 }
 
