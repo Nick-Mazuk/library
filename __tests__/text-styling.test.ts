@@ -1,4 +1,4 @@
-import { sentenceCase, endWithPunctuation, slugify } from '../text-styling'
+import { sentenceCase, endWithPunctuation, slugify, hash } from '../text-styling'
 
 describe('Strings should end with punctuation', () => {
     test('Base case: empty strings should not get punctuation', () => {
@@ -477,5 +477,15 @@ describe('slugify text', () => {
 
     test.each(strings)('"%s" becomes "%s"', (input, result) => {
         expect(slugify(input)).toBe(result)
+    })
+})
+
+describe('hashes a string', () => {
+    const hashes: [string, string][] = [
+        ['', ''],
+        ['hello world', '0de8bee5d7f9c5d209f8c6fabed0ea84cb3fca1244e8ed38079a61b599a84c47'],
+    ]
+    test.each(hashes)('hashes "%s" to "%s"', (input, output) => {
+        expect(hash(input)).toBe(output)
     })
 })

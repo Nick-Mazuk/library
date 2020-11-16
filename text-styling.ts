@@ -1,3 +1,5 @@
+import { createHmac } from 'crypto'
+
 export const endWithPunctuation = (string: string, punctuation?: string): string => {
     if ('.!?'.includes(string.charAt(string.length - 1))) return string
     const mark = punctuation && punctuation.length === 1 ? punctuation : '.'
@@ -29,4 +31,9 @@ export const slugify = (string: string): string => {
             .replace(new RegExp(`[\\s${separator}]+`, 'gu'), separator)
             .toLowerCase()
     )
+}
+
+export const hash = (string: string): string => {
+    if (string === '') return ''
+    return createHmac('sha256', string).digest('hex')
 }
