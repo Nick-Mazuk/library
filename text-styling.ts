@@ -37,3 +37,10 @@ export const hash = (string: string): string => {
     if (string === '') return ''
     return createHmac('sha256', string).digest('hex')
 }
+
+export const getFileExtension = (file: string): string => {
+    if (file === '') return ''
+    const parts = file.split('.')
+    if (parts.length <= 1) return ''
+    return parts[parts.length - 1]
+}

@@ -1,4 +1,4 @@
-import { sentenceCase, endWithPunctuation, slugify, hash } from '../text-styling'
+import { sentenceCase, endWithPunctuation, slugify, hash, getFileExtension } from '../text-styling'
 
 describe('Strings should end with punctuation', () => {
     test('Base case: empty strings should not get punctuation', () => {
@@ -487,5 +487,18 @@ describe('hashes a string', () => {
     ]
     test.each(hashes)('hashes "%s" to "%s"', (input, output) => {
         expect(hash(input)).toBe(output)
+    })
+})
+
+describe('gets the extension for each file name', () => {
+    const files: [string, string][] = [
+        ['', ''],
+        ['hello world.png', 'png'],
+        ['hello.world.jpg', 'jpg'],
+        ['this-does-not-have-an-extension', ''],
+    ]
+
+    test.each(files)('the filename "%s" has extension "%s"', (file, extension) => {
+        expect(getFileExtension(file)).toBe(extension)
     })
 })
