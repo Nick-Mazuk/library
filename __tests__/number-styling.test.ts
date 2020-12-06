@@ -31,6 +31,7 @@ describe('Detect if a string is a number', () => {
         '1000',
         '10,0000,0',
         '31415926535',
+        '-31415926535',
         '123.123123123',
         '0',
         '1',
@@ -38,7 +39,10 @@ describe('Detect if a string is a number', () => {
         '1.',
         '000100.',
         '.123',
+        '-0',
+        '-1',
         1,
+        -1,
     ]
     test.each(validNumbers)('%s is a valid number', (string) => {
         expect(isNumber(string)).toBe(true)
@@ -64,6 +68,8 @@ describe('Formats a number with thousands separators', () => {
         ['10,0000,0', '1,000,000', 'remove incorrect separators'],
         ['123.123123123', '123.123123123', 'remove incorrect separators'],
         ['123,123.123123123', '123,123.123123123', "don't affect decimals"],
+        ['-1000', '1,000', 'keeps negative sign'],
+        ['-0', '0', 'works with negative 0'],
         [1000, '1,000', 'also works with numbers'],
     ]
 
@@ -99,6 +105,9 @@ describe('truncates decimal', () => {
         ['3.1415', 5, '3.1415'],
         ['3.', 5, '3.'],
         [100.123, 1, '100.1'],
+        [-100.123, 1, '100.1'],
+        ['-3.1415', 5, '3.1415'],
+        ['-0', 5, '0'],
     ]
     test.each(numbers)(
         'decimals are truncated: "%s" truncated by "%s" results in "%s"',
@@ -137,6 +146,8 @@ describe('rounds decimal', () => {
         [100.123, 1, '100.1'],
         ['3.49', 0, '3'],
         ['3.5', 0, '4'],
+        [-100.123, 1, '100.1'],
+        ['-3.14159', 5, '-3.14159'],
     ]
     test.each(numbers)(
         'decimals are rounded: "%s" truncated by "%s" results in "%s"',
@@ -171,6 +182,9 @@ describe('formats number completely', () => {
         ['0.', '0', 'no dangling periods'],
         ['211.', '211', 'no dangling periods'],
         [314159.26535, '314,159.26535', 'also works with numbers'],
+        [-314159.26535, '314,159.26535', 'works with negative numbers'],
+        [-0, '0', 'negative becomes 0'],
+        ['-0', '0', 'negative becomes 0'],
     ]
     test.each(numbers)('"%s" should be "%s": "%s"', (number, result) => {
         expect(formatNumber(number)).toBe(result)
@@ -193,6 +207,8 @@ describe('turns numbers into percentages', () => {
         [0.12345, 2, '12.35%'],
         ['1.234', 0, '123%'],
         ['12.34', 0, '1,234%'],
+        ['-12.34', 0, '-1,234%'],
+        ['-0', 0, '0%'],
     ]
     test.each(numbers)(
         'turned to percentage: "%s" truncated by "%s" results in "%s"',
