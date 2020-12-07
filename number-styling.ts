@@ -58,7 +58,7 @@ export const formatNumber = (input: string | number): string => {
     return number
 }
 
-export const toPercentage = (input: string | number, decimals?: number) => {
+export const toPercentage = (input: string | number, decimals?: number): string => {
     if (!isNumber(input)) return ''
     let number = typeof input === 'string' ? parseFloat(input) : input
     number *= 100
