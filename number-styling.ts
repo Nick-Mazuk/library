@@ -2,7 +2,7 @@ export const isNumber = (number: string | number): boolean => {
     if (typeof number === 'number') return true
     if (number === '') return false
     if (isNaN(parseFloat(number))) return false
-    return Boolean(number.match(/^[\d,]*\.?[\d]*$/u))
+    return Boolean(number.match(/^-?[\d,]*\.?[\d]*$/u))
 }
 
 export const addThousandsSeparators = (input: string | number): string => {
@@ -28,6 +28,8 @@ export const truncateDecimals = (input: string | number, decimals: number): stri
 export const roundDecimals = (input: string | number, decimals: number): string => {
     if (typeof input === 'number') return input.toFixed(decimals)
     if (!isNumber(input)) return ''
+    if (input.startsWith('-')) return truncateDecimals(input, decimals)
+
     const parts = input.split('.')
     if (!parts[1]) return String(input)
     const roundingDigit = parts[1].slice(decimals, decimals + 1)
@@ -55,6 +57,7 @@ export const formatNumber = (input: string | number): string => {
     number = number.replace(/^[.]+/u, '0.')
     number = number.replace(/[.]+$/u, '')
     number = addThousandsSeparators(number)
+    if (number === '-0') return '0'
     return number
 }
 
