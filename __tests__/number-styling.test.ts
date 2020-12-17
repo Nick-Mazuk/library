@@ -5,6 +5,8 @@ import {
     truncateDecimals,
     toPercentage,
     roundDecimals,
+    fixedDecimals,
+    stringToNumber,
 } from '../number-styling'
 
 const invalidNumbers = [
@@ -105,6 +107,7 @@ describe('truncates decimal', () => {
         ['3.1415', 5, '3.1415'],
         ['3.', 5, '3.'],
         [100.123, 1, '100.1'],
+        [100.123, 4, '100.123'],
         [-100.123, 1, '-100.1'],
         ['-3.1415', 5, '-3.1415'],
         ['-0', 5, '-0'],
@@ -144,6 +147,8 @@ describe('rounds decimal', () => {
         ['3.1415', 5, '3.1415'],
         ['3.', 5, '3.'],
         [100.123, 1, '100.1'],
+        [100.123, 4, '100.123'],
+        [100.15, 1, '100.2'],
         ['3.49', 0, '3'],
         ['3.5', 0, '4'],
         ['-3.5', 0, '-3'],
@@ -155,6 +160,69 @@ describe('rounds decimal', () => {
         'decimals are rounded: "%s" truncated by "%s" results in "%s"',
         (number, digits, result) => {
             expect(roundDecimals(number, digits)).toBe(result)
+        }
+    )
+})
+
+// eslint-disable-next-line max-lines-per-function -- long only because there are lots of test cases
+describe('fixes a number to a certain number of decimals', () => {
+    test.each(invalidNumbers)(
+        'base case: strings that aren\'t valid numbers an empty string: "%s"',
+        (string) => {
+            expect(fixedDecimals(string, 2)).toBe('')
+        }
+    )
+
+    const preformattedNumbers = ['123,123', '314159']
+    test.each(preformattedNumbers)('numbers without decimals remain unchanged: "%s"', (string) => {
+        expect(roundDecimals(string, 2)).toBe(string)
+    })
+
+    const numbers: [string | number, number, string][] = [
+        ['3.14159', 0, '3'],
+        ['3.14159', 1, '3.1'],
+        ['3.14159', 2, '3.14'],
+        ['3.14159', 3, '3.141'],
+        ['3.14159', 4, '3.1415'],
+        ['3.14159', 5, '3.14159'],
+        ['3.14159', 6, '3.141590'],
+        ['3.14159', 7, '3.1415900'],
+        ['3.14159', 8, '3.14159000'],
+        ['3', 5, '3.00000'],
+        ['3.1', 5, '3.10000'],
+        ['3.14', 5, '3.14000'],
+        ['3.141', 5, '3.14100'],
+        ['3.1415', 5, '3.14150'],
+        ['-3.14159', 0, '-3'],
+        ['-3.14159', 1, '-3.1'],
+        ['-3.14159', 2, '-3.14'],
+        ['-3.14159', 3, '-3.141'],
+        ['-3.14159', 4, '-3.1415'],
+        ['-3.14159', 5, '-3.14159'],
+        ['-3.14159', 6, '-3.141590'],
+        ['-3.14159', 7, '-3.1415900'],
+        ['-3.14159', 8, '-3.14159000'],
+        ['-3', 0, '-3'],
+        ['-3', 5, '-3.00000'],
+        ['-3.1', 5, '-3.10000'],
+        ['-3.14', 5, '-3.14000'],
+        ['-3.141', 5, '-3.14100'],
+        ['-3.1415', 5, '-3.14150'],
+        ['3.', 0, '3'],
+        [100.123, 1, '100.1'],
+        [100.123, 4, '100.1230'],
+        [100.15, 1, '100.1'],
+        ['3.49', 0, '3'],
+        ['3.5', 0, '3'],
+        ['-3.5', 0, '-3'],
+        [-100.123, 1, '-100.1'],
+        ['-3.14159', 4, '-3.1415'],
+        ['-0', 0, '-0'],
+    ]
+    test.each(numbers)(
+        'decimals are fixed: "%s" with "%s" fixed decimals results in "%s"',
+        (number, digits, result) => {
+            expect(fixedDecimals(number, digits)).toBe(result)
         }
     )
 })
@@ -218,4 +286,38 @@ describe('turns numbers into percentages', () => {
             expect(toPercentage(number, decimals)).toBe(result)
         }
     )
+})
+
+describe('turns number strings into number types', () => {
+    test.each(invalidNumbers)(
+        'base case: strings that aren\'t valid numbers an empty string: "%s"',
+        (string) => {
+            expect(stringToNumber(string)).toBe(NaN)
+        }
+    )
+
+    const numbers: [string, number][] = [
+        ['0.314159', 0.314159],
+        ['0.271828', 0.271828],
+        ['1.234', 1.234],
+        ['-12.34', -12.34],
+        ['1,000', 1000],
+        ['1,000.0', 1000],
+        ['0', 0],
+        ['1', 1],
+        ['000100', 100],
+        ['000100.', 100],
+        ['0,00100.0', 100],
+        ['0.0', 0],
+        ['0.1', 0.1],
+        ['1.0', 1],
+        ['0.000', 0],
+        ['1.', 1],
+        ['0.', 0],
+        ['211.', 211],
+        ['-0', -0],
+    ]
+    test.each(numbers)('turned string "%s" into number %s', (number, result) => {
+        expect(stringToNumber(number)).toBe(result)
+    })
 })

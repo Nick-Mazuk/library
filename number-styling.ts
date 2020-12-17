@@ -26,11 +26,11 @@ export const truncateDecimals = (input: string | number, decimals: number): stri
 }
 
 export const roundDecimals = (input: string | number, decimals: number): string => {
-    if (typeof input === 'number') return input.toFixed(decimals)
     if (!isNumber(input)) return ''
-    if (input.startsWith('-')) return truncateDecimals(input, decimals)
+    const inputNumber = typeof input === 'string' ? input : String(input)
+    if (inputNumber.startsWith('-')) return truncateDecimals(input, decimals)
 
-    const parts = input.split('.')
+    const parts = inputNumber.split('.')
     if (!parts[1]) return String(input)
     const roundingDigit = parts[1].slice(decimals, decimals + 1)
     parts[1] = parts[1].slice(0, Math.max(0, decimals))
@@ -46,6 +46,17 @@ export const roundDecimals = (input: string | number, decimals: number): string 
     let number = parts.join('.')
     number = number.replace(/[.]+$/u, '')
     return number
+}
+
+export const fixedDecimals = (input: string | number, decimals: number): string => {
+    const number = truncateDecimals(input, decimals)
+    if (number === '') return number
+    const parts = number.split('.')
+    if (decimals === 0) return parts[0]
+
+    let finalDecimals = parts[1] ?? ''
+    for (let index = finalDecimals.length; index < decimals; index++) finalDecimals += '0'
+    return `${parts[0]}.${finalDecimals}`
 }
 
 export const formatNumber = (input: string | number): string => {
@@ -68,4 +79,10 @@ export const toPercentage = (input: string | number, decimals?: number): string 
     let percentage = formatNumber(number)
     if (typeof decimals !== 'undefined') percentage = roundDecimals(percentage, decimals)
     return `${percentage}%`
+}
+
+export const stringToNumber = (input: string): number => {
+    if (!isNumber(input)) return NaN
+    const number = input.replace(/,/gu, '')
+    return parseFloat(number)
 }
