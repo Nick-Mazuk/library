@@ -9,6 +9,7 @@ type Props = {
 export const createMailtoLink = ({ to, subject, body, cc, bcc }: Props): string => {
     let mailto = `mailto:`
     if (to) mailto += to
+    mailto += '?'
     if (subject) mailto += `&subject=${subject}`
     if (body) mailto += `&body=${body}`
     if (cc) mailto += `&cc=${cc}`
