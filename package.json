@@ -7,6 +7,9 @@
     ],
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
+    "exports": {
+        "./": "./lib/"
+    },
     "scripts": {
         "eslint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
         "check-types": "tsc --noemit",
