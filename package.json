@@ -20,7 +20,8 @@
         }
     },
     "jest": {
-        "collectCoverage": true
+        "collectCoverage": true,
+        "testPathIgnorePatterns": ["/node_modules/", "/js/"]
     },
     "type": "module",
     "keywords": [],
