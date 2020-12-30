@@ -5,11 +5,8 @@
     "files": [
         "lib/**/*"
     ],
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
-    "exports": {
-        "./": "./lib/"
-    },
+    "exports": "./lib/index.js",
+    "types": "./lib/index.d.ts",
     "scripts": {
         "eslint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
         "check-types": "tsc --noemit",
