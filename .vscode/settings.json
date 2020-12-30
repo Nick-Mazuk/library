@@ -4,6 +4,6 @@
     },
     "eslint.run": "onType",
     "files.exclude": {
-        "lib": true
+        "js": true
     },
 }
