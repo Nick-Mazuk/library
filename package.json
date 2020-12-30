@@ -5,7 +5,7 @@
     "files": [
         "lib/**/*"
     ],
-    "exports": "./lib/index.js",
+    "main": "./lib/index.js",
     "types": "./lib/index.d.ts",
     "scripts": {
         "eslint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
@@ -13,7 +13,11 @@
         "lint": "npm run eslint && npm run check-types",
         "test": "jest",
         "test:watch": "npm run test -- --watch",
-        "build": "tsc"
+        "build": "tsc",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm run lint && npm run test",
+        "preversion": "npm run lint",
+        "postversion": "git push && git push --tags"
     },
     "husky": {
         "hooks": {
