@@ -1,6 +1,6 @@
 {
     "name": "@nick-mazuk/lib",
-    "version": "0.8.4",
+    "version": "0.8.5",
     "description": "",
     "scripts": {
         "eslint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
@@ -21,7 +21,10 @@
     },
     "jest": {
         "collectCoverage": true,
-        "testPathIgnorePatterns": ["/node_modules/", "/js/"]
+        "testPathIgnorePatterns": [
+            "/node_modules/",
+            "/js/"
+        ]
     },
     "type": "module",
     "keywords": [],
