@@ -3,33 +3,27 @@
     "alwaysStrict": true,
     "compilerOptions": {
         "target": "es5",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
         "allowJs": true,
+        "lib": ["DOM"],
         "skipLibCheck": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "noImplicitReturns": true,
         "noUnusedLocals": true,
-        "noEmit": true,
         "esModuleInterop": true,
-        "module": "esnext",
+        "module": "commonjs",
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "jsx": "preserve",
-        "jsxFactory": "createElement",
+        "outDir": "./lib",
+        "declaration": true
     },
     "include": [
         "**/*.ts",
-        "*.ts",
-        "**/*.tsx",
-        "*.tsx"
+        "*.ts"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "lib**/*"
     ]
 }

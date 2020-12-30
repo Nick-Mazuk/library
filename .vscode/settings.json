@@ -3,4 +3,7 @@
         "source.fixAll.eslint": true
     },
     "eslint.run": "onType",
+    "files.exclude": {
+        "lib": true
+    },
 }

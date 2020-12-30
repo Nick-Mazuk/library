@@ -1,5 +1,6 @@
 {
     "extends": [
         "@nick-mazuk/eslint-config/react"
-    ]
+    ],
+    "ignorePatterns": ["lib/**/*"],
 }
