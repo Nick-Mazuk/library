@@ -1,4 +1,11 @@
-import { sentenceCase, endWithPunctuation, slugify, hash, getFileExtension } from '../text-styling'
+import {
+    sentenceCase,
+    endWithPunctuation,
+    slugify,
+    hash,
+    getFileExtension,
+    changeFileExtension,
+} from '../text-styling'
 
 describe('Strings should end with punctuation', () => {
     test('Base case: empty strings should not get punctuation', () => {
@@ -493,6 +500,8 @@ describe('hashes a string', () => {
 describe('gets the extension for each file name', () => {
     const files: [string, string][] = [
         ['', ''],
+        ['.', ''],
+        ['hello.', ''],
         ['hello world.png', 'png'],
         ['hello.world.jpg', 'jpg'],
         ['this/file/is/inside/a/folder/hello.world.jpg', 'jpg'],
@@ -502,4 +511,26 @@ describe('gets the extension for each file name', () => {
     test.each(files)('the filename "%s" has extension "%s"', (file, extension) => {
         expect(getFileExtension(file)).toBe(extension)
     })
+})
+
+describe('changes the extension for each file name', () => {
+    const files: [string, string, string][] = [
+        ['', 'webp', ''],
+        ['hello.world.png', 'jpg', 'hello.world.jpg'],
+        ['hello.world.jpg', 'png', 'hello.world.png'],
+        [
+            'this/file/is/inside/a/folder/hello.world.jpg',
+            'webp',
+            'this/file/is/inside/a/folder/hello.world.webp',
+        ],
+        ['this-does-not-have-an-extension', 'word', ''],
+        ['hello.jpg.jpg', 'png', 'hello.jpg.png'],
+    ]
+
+    test.each(files)(
+        'the file "%s" with new extension "%s" is "%s"',
+        (file, newExtension, result) => {
+            expect(changeFileExtension(file, newExtension)).toBe(result)
+        }
+    )
 })

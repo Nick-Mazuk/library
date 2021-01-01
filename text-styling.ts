@@ -39,8 +39,13 @@ export const hash = (string: string): string => {
 }
 
 export const getFileExtension = (file: string): string => {
-    if (file === '') return ''
-    const parts = file.split('.')
-    if (parts.length <= 1) return ''
-    return parts[parts.length - 1]
+    const matches = file.match(/\.[^.]+$/u)
+    if (!matches || matches.length === 0) return ''
+    return matches[0].slice(1)
+}
+
+export const changeFileExtension = (file: string, newExtension: string): string => {
+    const extension = getFileExtension(file)
+    if (extension === '') return ''
+    return file.replace(new RegExp(`${extension}$`, 'u'), newExtension)
 }
