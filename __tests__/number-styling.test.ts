@@ -7,6 +7,7 @@ import {
     roundDecimals,
     fixedDecimals,
     stringToNumber,
+    padZeros,
 } from '../number-styling'
 
 const invalidNumbers = [
@@ -319,5 +320,25 @@ describe('turns number strings into number types', () => {
     ]
     test.each(numbers)('turned string "%s" into number %s', (number, result) => {
         expect(stringToNumber(number)).toBe(result)
+    })
+})
+
+describe('adds zeros to the front of the string such that it has the required number of digits', () => {
+    test.each(invalidNumbers)(
+        'base case: strings that aren\'t valid numbers an empty string: "%s"',
+        (string) => {
+            expect(padZeros(string, 2)).toBe('')
+        }
+    )
+
+    const numbers: [string | number, number, string][] = [
+        ['1', 1, '1'],
+        ['-1', 1, '-1'],
+        ['1', 3, '001'],
+        ['-1', 3, '-001'],
+        ['-1.0', 3, '-001.0'],
+    ]
+    test.each(numbers)('number "%s" padding with "%s" zeros is %s', (number, zeros, result) => {
+        expect(padZeros(number, zeros)).toBe(result)
     })
 })

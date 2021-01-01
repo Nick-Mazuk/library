@@ -86,3 +86,16 @@ export const stringToNumber = (input: string): number => {
     const number = input.replace(/,/gu, '')
     return parseFloat(number)
 }
+
+export const padZeros = (number: string | number, digits: number): string => {
+    if (!isNumber(number)) return ''
+    const stringNumber = String(number)
+    const parts = stringNumber.split('.')
+    const isNegative = stringNumber.startsWith('-')
+    const currentDigitsCount = parts[0].length - (isNegative ? 1 : 0)
+    if (digits <= currentDigitsCount) return stringNumber
+    let padding = ''
+    for (let index = 0; index < digits - currentDigitsCount; index++) padding += '0'
+    parts[0] = `${isNegative ? '-' : ''}${padding}${parts[0].slice(isNegative ? 1 : 0)}`
+    return parts.join('.')
+}
