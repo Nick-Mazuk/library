@@ -495,6 +495,7 @@ describe('gets the extension for each file name', () => {
         ['', ''],
         ['hello world.png', 'png'],
         ['hello.world.jpg', 'jpg'],
+        ['this/file/is/inside/a/folder/hello.world.jpg', 'jpg'],
         ['this-does-not-have-an-extension', ''],
     ]
 
