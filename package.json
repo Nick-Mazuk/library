@@ -14,11 +14,6 @@
         "preversion": "npm run lint",
         "postversion": "git push && git push --tags"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "npx lint"
-        }
-    },
     "jest": {
         "collectCoverage": true,
         "testPathIgnorePatterns": [
@@ -41,7 +36,6 @@
         "@types/validator": "^13.1.0",
         "babel-jest": "^26.5.2",
         "eslint": "^7.11.0",
-        "husky": "^4.3.0",
         "jest": "^26.6.3"
     },
     "dependencies": {
