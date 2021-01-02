@@ -5,6 +5,7 @@ import {
     hash,
     getFileExtension,
     changeFileExtension,
+    removeFileExtension,
 } from '../text-styling'
 
 describe('Strings should end with punctuation', () => {
@@ -533,4 +534,23 @@ describe('changes the extension for each file name', () => {
             expect(changeFileExtension(file, newExtension)).toBe(result)
         }
     )
+})
+
+describe.only('removes the extension for each file name', () => {
+    const files: [string, string][] = [
+        ['', ''],
+        ['.', '.'],
+        ['hello.', 'hello.'],
+        ['hello world.png', 'hello world'],
+        ['hello.world.jpg', 'hello.world'],
+        [
+            'this/file/is/inside/a/folder/hello.world.jpg',
+            'this/file/is/inside/a/folder/hello.world',
+        ],
+        ['this-does-not-have-an-extension', 'this-does-not-have-an-extension'],
+    ]
+
+    test.each(files)('the filename "%s" has extension "%s"', (fileName, newFileName) => {
+        expect(removeFileExtension(fileName)).toBe(newFileName)
+    })
 })

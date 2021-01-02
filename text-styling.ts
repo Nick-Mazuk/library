@@ -49,3 +49,7 @@ export const changeFileExtension = (file: string, newExtension: string): string 
     if (extension === '') return ''
     return file.replace(new RegExp(`${extension}$`, 'u'), newExtension)
 }
+
+export const removeFileExtension = (file: string): string => {
+    return file.replace(/\.[^.]+$/u, '')
+}
