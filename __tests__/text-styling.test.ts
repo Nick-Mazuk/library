@@ -536,7 +536,7 @@ describe('changes the extension for each file name', () => {
     )
 })
 
-describe.only('removes the extension for each file name', () => {
+describe('removes the extension for each file name', () => {
     const files: [string, string][] = [
         ['', ''],
         ['.', '.'],
