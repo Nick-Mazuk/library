@@ -19,7 +19,8 @@
         "testPathIgnorePatterns": [
             "/node_modules/",
             "/js/"
-        ]
+        ],
+        "globalSetup": "./test-setup.ts"
     },
     "type": "commonjs",
     "keywords": [],
