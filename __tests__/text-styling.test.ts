@@ -6,6 +6,7 @@ import {
     getFileExtension,
     changeFileExtension,
     removeFileExtension,
+    normalizeText,
 } from '../text-styling'
 
 describe('Strings should end with punctuation', () => {
@@ -485,6 +486,63 @@ describe('slugify text', () => {
 
     test.each(strings)('"%s" becomes "%s"', (input, result) => {
         expect(slugify(input)).toBe(result)
+    })
+})
+
+// eslint-disable-next-line max-lines-per-function -- long only because there are many tests
+describe('normalizes text (e.g., for search queries)', () => {
+    const texts: [string, string][] = [
+        ['', ''],
+        ['hello', 'hello'],
+        ['No.', 'no'],
+        [
+            'really long query with more than 10 words for some reason',
+            'really long query with more than 10 words for some reason',
+        ],
+        ["Beethoven's 5th", "beethoven's 5th"],
+        ['ridiculous    spaces should   be removed      ', 'ridiculous spaces should be removed'],
+        ['é', 'e'],
+        ['$', '$'],
+        ['%', '%'],
+        ['(and this is some parenthesis)', '(and this is some parenthesis)'],
+
+        // currencies
+        ['€', '€'],
+        ['₢', 'cruzeiro'],
+        ['₣', 'french franc'],
+        ['£', '£'],
+        ['₤', 'lira'],
+        ['₥', 'mill'],
+        ['₦', 'naira'],
+        ['₧', 'peseta'],
+        ['₨', 'rupee'],
+        ['₩', 'won'],
+        ['₪', 'new shequel'],
+        ['₫', 'dong'],
+        ['₭', 'kip'],
+        ['₮', 'tugrik'],
+        ['₸', 'kazakhstani tenge'],
+        ['₯', 'drachma'],
+        ['₰', 'penny'],
+        ['₱', 'peso'],
+        ['₲', 'guarani'],
+        ['₳', 'austral'],
+        ['₴', 'hryvnia'],
+        ['₵', 'cedi'],
+        ['¢', '¢'],
+        ['¥', '¥'],
+        ['元', 'yuan'],
+        ['円', 'yen'],
+        ['﷼', 'rial'],
+        ['₠', 'ecu'],
+        ['฿', 'baht'],
+        ['$', '$'],
+        ['₽', 'russian ruble'],
+        ['₿', 'bitcoin'],
+        ['₺', 'turkish lira'],
+    ]
+    test.each(texts)('"%s" becomes "%s"', (input, result) => {
+        expect(normalizeText(input)).toBe(result)
     })
 })
 
