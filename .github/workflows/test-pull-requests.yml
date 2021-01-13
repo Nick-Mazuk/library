@@ -38,6 +38,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: master
+      - uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 12
+      - run: npm ci
       - uses: phips28/gh-action-bump-version@v8.0.18
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
