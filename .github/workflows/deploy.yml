@@ -15,20 +15,48 @@ jobs:
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: ${{ matrix.node }}
-      - run: npm ci
+      - name: Cache ~/.pnpm-store
+        uses: actions/cache@main
+        env:
+          cache-name: cache-pnpm-store
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ matrix.node-version }}-build-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-${{ matrix.node-version }}-build-
+            ${{ runner.os }}-
+      - run: npm i -g pnpm
+      - run: pnpm i
       - run: npm run lint
       - run: npm run test
       - run: npm run build
+        
   deploy:
     runs-on: ubuntu-latest
     needs:
       - test-deploy
+    strategy:
+      matrix:
+        node: [14]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2.1.4
         with:
-          node-version: 14
-      - run: npm ci
+          node-version: ${{ matrix.node }}
+      - name: Cache ~/.pnpm-store
+        uses: actions/cache@main
+        env:
+          cache-name: cache-pnpm-store
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ matrix.node-version }}-build-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-${{ matrix.node-version }}-build-
+            ${{ runner.os }}-
+      - run: npm i -g pnpm
+      - run: pnpm i
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
