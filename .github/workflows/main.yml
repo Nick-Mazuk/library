@@ -28,7 +28,6 @@ jobs:
             ${{ runner.os }}-${{ matrix.node-version }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-${{ matrix.node-version }}-build-
             ${{ runner.os }}-
-      - run: npm i -g pnpm
       - run: npm -v
       - run: pnpm i
       - run: npm run lint
