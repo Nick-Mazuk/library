@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "config:base",
+        ":preserveSemverRanges"
+    ],
+    "automerge": true,
+    "automergeType": "branch",
+    "lockFileMaintenance": {
+        "enabled": true
+    },
+    "bumpVersion": "patch"
+}
