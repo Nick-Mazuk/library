@@ -57,3 +57,12 @@ export const getYouTubeVideoThumbnail = (
     if (size === 'max') return `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`
     return `https://i.ytimg.com/vi/${id}/default.jpg`
 }
+
+export const createYouTubeChannelUrl = (
+    channelId: string,
+    options?: { subscribe?: boolean }
+): string => {
+    let url = `https://youtube.com/${channelId}`
+    if (options?.subscribe) url += '?subscribe=1'
+    return url
+}

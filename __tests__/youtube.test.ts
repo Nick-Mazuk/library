@@ -5,6 +5,7 @@ import {
     isYouTubeChannelUrl,
     getYouTubeChannelId,
     getYouTubeVideoThumbnail,
+    createYouTubeChannelUrl,
 } from '../youtube'
 
 /* eslint-disable no-secrets/no-secrets -- urls will often look like secrets */
@@ -408,6 +409,21 @@ describe('create YT video thumbnail', () => {
         )
         expect(getYouTubeVideoThumbnail('123456', 'max')).toBe(
             'https://i.ytimg.com/vi/123456/maxresdefault.jpg'
+        )
+    })
+})
+
+describe('create YT channel url', () => {
+    test('without custom options', () => {
+        expect(createYouTubeChannelUrl('12345')).toBe('https://youtube.com/12345')
+        expect(createYouTubeChannelUrl('123456')).toBe('https://youtube.com/123456')
+    })
+    test('with auto-subscribe', () => {
+        expect(createYouTubeChannelUrl('12345', { subscribe: true })).toBe(
+            'https://youtube.com/12345?subscribe=1'
+        )
+        expect(createYouTubeChannelUrl('123456', { subscribe: true })).toBe(
+            'https://youtube.com/123456?subscribe=1'
         )
     })
 })
