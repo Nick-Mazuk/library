@@ -44,3 +44,16 @@ export const getYouTubeChannelId = (url: string): string => {
     const paths = parsedUrl.pathname.split('/')
     return paths[paths.length - 1]
 }
+
+export type YouTubeThumbnailSize = 'default' | 'standard' | 'medium' | 'high' | 'max'
+
+export const getYouTubeVideoThumbnail = (
+    id: string,
+    size: YouTubeThumbnailSize = 'default'
+): string => {
+    if (size === 'standard') return `https://i.ytimg.com/vi/${id}/sddefault.jpg`
+    if (size === 'medium') return `https://i.ytimg.com/vi/${id}/mqdefault.jpg`
+    if (size === 'high') return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+    if (size === 'max') return `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`
+    return `https://i.ytimg.com/vi/${id}/default.jpg`
+}

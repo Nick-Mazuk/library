@@ -4,6 +4,7 @@ import {
     getYouTubeVideoId,
     isYouTubeChannelUrl,
     getYouTubeChannelId,
+    getYouTubeVideoThumbnail,
 } from '../youtube'
 
 /* eslint-disable no-secrets/no-secrets -- urls will often look like secrets */
@@ -368,4 +369,45 @@ describe('get YT channel id', () => {
             expect(getYouTubeChannelId(url)).toBe(attributes.id)
         }
     )
+})
+
+describe('create YT video thumbnail', () => {
+    test('default quality', () => {
+        expect(getYouTubeVideoThumbnail('12345')).toBe('https://i.ytimg.com/vi/12345/default.jpg')
+        expect(getYouTubeVideoThumbnail('123456', 'default')).toBe(
+            'https://i.ytimg.com/vi/123456/default.jpg'
+        )
+    })
+    test('standard quality', () => {
+        expect(getYouTubeVideoThumbnail('12345', 'standard')).toBe(
+            'https://i.ytimg.com/vi/12345/sddefault.jpg'
+        )
+        expect(getYouTubeVideoThumbnail('123456', 'standard')).toBe(
+            'https://i.ytimg.com/vi/123456/sddefault.jpg'
+        )
+    })
+    test('medium quality', () => {
+        expect(getYouTubeVideoThumbnail('12345', 'medium')).toBe(
+            'https://i.ytimg.com/vi/12345/mqdefault.jpg'
+        )
+        expect(getYouTubeVideoThumbnail('123456', 'medium')).toBe(
+            'https://i.ytimg.com/vi/123456/mqdefault.jpg'
+        )
+    })
+    test('high quality', () => {
+        expect(getYouTubeVideoThumbnail('12345', 'high')).toBe(
+            'https://i.ytimg.com/vi/12345/hqdefault.jpg'
+        )
+        expect(getYouTubeVideoThumbnail('123456', 'high')).toBe(
+            'https://i.ytimg.com/vi/123456/hqdefault.jpg'
+        )
+    })
+    test('max quality', () => {
+        expect(getYouTubeVideoThumbnail('12345', 'max')).toBe(
+            'https://i.ytimg.com/vi/12345/maxresdefault.jpg'
+        )
+        expect(getYouTubeVideoThumbnail('123456', 'max')).toBe(
+            'https://i.ytimg.com/vi/123456/maxresdefault.jpg'
+        )
+    })
 })
