@@ -6473,7 +6473,7 @@ specifiers:
   '@babel/preset-env': ^7.13.10
   '@babel/preset-typescript': ^7.13.0
   '@nick-mazuk/eslint-config': ^0.7.19
-  '@types/jest': ^26.0.15
+  '@types/jest': ^26.0.20
   '@types/node': ^14.11.8
   '@types/react': ^17.0.0
   '@types/validator': ^13.1.0
