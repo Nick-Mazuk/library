@@ -13,5 +13,11 @@
         "after 10pm every weekday",
         "before 5am every weekday",
         "every weekend"
-    ]
+    ],
+    "packageRules": [
+        {
+          "matchPackagePatterns": ["^@nick-mazuk"],
+          "prPriority": 5
+        }
+  ]
 }
