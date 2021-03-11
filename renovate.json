@@ -7,8 +7,10 @@
     "lockFileMaintenance": {
         "enabled": true
     },
+    "dependencyDashboard": true,
     "rangeStrategy": "bump",
     "bumpVersion": "patch",
+    "prConcurrentLimit": 2,
     "packageRules": [
         {
           "matchPackagePatterns": ["^@nick-mazuk"],
