@@ -4,7 +4,7 @@ devDependencies:
   '@babel/core': 7.13.10
   '@babel/preset-env': 7.13.12_@babel+core@7.13.10
   '@babel/preset-typescript': 7.13.0_@babel+core@7.13.10
-  '@nick-mazuk/eslint-config': 0.7.38_eslint@7.22.0+typescript@4.2.3
+  '@nick-mazuk/eslint-config': 0.7.40_eslint@7.22.0+typescript@4.2.3
   '@types/jest': 26.0.22
   '@types/node': 14.14.36
   '@types/react': 17.0.3
@@ -1267,7 +1267,7 @@ packages:
       node: '>= 10.14.2'
     resolution:
       integrity: sha512-fC6QCp7Sc5sX6g8Tvbmj4XUTbyrik0akgRy03yjXbQaBWWNWGE7SGtJk98m0N8nzegD/7SggrUlivxo5ax4KWQ==
-  /@nick-mazuk/eslint-config/0.7.38_eslint@7.22.0+typescript@4.2.3:
+  /@nick-mazuk/eslint-config/0.7.40_eslint@7.22.0+typescript@4.2.3:
     dependencies:
       '@typescript-eslint/eslint-plugin': 4.19.0_f26dcf5ec38a04241b14c26bc931244e
       '@typescript-eslint/parser': 4.19.0_eslint@7.22.0+typescript@4.2.3
@@ -1291,14 +1291,13 @@ packages:
       eslint-plugin-unicorn: 29.0.0_eslint@7.22.0
       eslint-plugin-unused-imports: 1.1.0
       prettier: 2.2.1
-      prettier-plugin-svelte: 2.2.0_prettier@2.2.1
       typescript: 4.2.3
     dev: true
     peerDependencies:
       eslint: '>= 7.22.0'
       typescript: '>= 4.2.3'
     resolution:
-      integrity: sha512-nqXt9PXHly8chYIqTT5lWF/MhqX186Uq6G5HdKbr2eAa+INCx+NZho0xmG65w+YnJC3o8LJ+YQxvaMaPLdl5bw==
+      integrity: sha512-ANfAApBfPyFlKW5dLdLv2Fp4vLej7WLA0T1H+qzNCCzdFiu/DCnCfZ65+iV4bphYh39Fns6eZIisai+Oib/low==
   /@nodelib/fs.scandir/2.1.4:
     dependencies:
       '@nodelib/fs.stat': 2.0.4
@@ -5079,15 +5078,6 @@ packages:
       node: '>=6.0.0'
     resolution:
       integrity: sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==
-  /prettier-plugin-svelte/2.2.0_prettier@2.2.1:
-    dependencies:
-      prettier: 2.2.1
-    dev: true
-    peerDependencies:
-      prettier: ^1.16.4 || ^2.0.0
-      svelte: ^3.2.0
-    resolution:
-      integrity: sha512-Xdmqgr71tAuMqqzNCK52/v94g/Yv7V7lz+nmbO9NEA+9ol15VV3uUHOfydMNOo3SWvFaVlBcp947ebEaMWqVfQ==
   /prettier/2.2.1:
     dev: true
     engines:
@@ -6353,7 +6343,7 @@ specifiers:
   '@babel/core': ^7.13.10
   '@babel/preset-env': ^7.13.12
   '@babel/preset-typescript': ^7.13.0
-  '@nick-mazuk/eslint-config': ^0.7.38
+  '@nick-mazuk/eslint-config': ^0.7.40
   '@types/jest': ^26.0.22
   '@types/node': ^14.14.36
   '@types/react': ^17.0.3
