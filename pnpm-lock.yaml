@@ -4,7 +4,7 @@ devDependencies:
   '@babel/core': 7.13.13
   '@babel/preset-env': 7.13.12_@babel+core@7.13.13
   '@babel/preset-typescript': 7.13.0_@babel+core@7.13.13
-  '@nick-mazuk/eslint-config': 0.7.40_eslint@7.23.0+typescript@4.2.3
+  '@nick-mazuk/eslint-config': 0.7.41_eslint@7.23.0+typescript@4.2.3
   '@types/jest': 26.0.22
   '@types/node': 14.14.37
   '@types/react': 17.0.3
@@ -77,9 +77,9 @@ packages:
       node: '>=6.9.0'
     resolution:
       integrity: sha512-1xEs9jZAyKIouOoCmpsgk/I26PoKyvzQ2ixdRpRzfbcp1fL+ozw7TUgdDgwonbTovqRaTfRh50IXuw4QrWO0GA==
-  /@babel/eslint-parser/7.13.10_648d18534c779bdc3c515b9e269966cd:
+  /@babel/eslint-parser/7.13.10_63214fcdaae50def4bee3e0a6e6337c2:
     dependencies:
-      '@babel/core': 7.13.10
+      '@babel/core': 7.13.13
       eslint: 7.23.0
       eslint-scope: 5.1.0
       eslint-visitor-keys: 1.3.0
@@ -1490,7 +1490,7 @@ packages:
       node: '>= 10.14.2'
     resolution:
       integrity: sha512-fC6QCp7Sc5sX6g8Tvbmj4XUTbyrik0akgRy03yjXbQaBWWNWGE7SGtJk98m0N8nzegD/7SggrUlivxo5ax4KWQ==
-  /@nick-mazuk/eslint-config/0.7.40_eslint@7.23.0+typescript@4.2.3:
+  /@nick-mazuk/eslint-config/0.7.41_eslint@7.23.0+typescript@4.2.3:
     dependencies:
       '@typescript-eslint/eslint-plugin': 4.19.0_821acdc8bc493ad1aa2628c9b724d688
       '@typescript-eslint/parser': 4.19.0_eslint@7.23.0+typescript@4.2.3
@@ -1517,10 +1517,10 @@ packages:
       typescript: 4.2.3
     dev: true
     peerDependencies:
-      eslint: '>= 7.22.0'
+      eslint: '>= 7.23.0'
       typescript: '>= 4.2.3'
     resolution:
-      integrity: sha512-ANfAApBfPyFlKW5dLdLv2Fp4vLej7WLA0T1H+qzNCCzdFiu/DCnCfZ65+iV4bphYh39Fns6eZIisai+Oib/low==
+      integrity: sha512-WgluhTLH5lBIt6VliExFU9j4pdVPmahKvNzoVUlniakCTZstc5Va47YI6yDIHvtUEhr1GKD1/mIdzkePHIGdAA==
   /@nodelib/fs.scandir/2.1.4:
     dependencies:
       '@nodelib/fs.stat': 2.0.4
@@ -3131,8 +3131,8 @@ packages:
       integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==
   /eslint-template-visitor/2.3.2_eslint@7.23.0:
     dependencies:
-      '@babel/core': 7.13.10
-      '@babel/eslint-parser': 7.13.10_648d18534c779bdc3c515b9e269966cd
+      '@babel/core': 7.13.13
+      '@babel/eslint-parser': 7.13.10_63214fcdaae50def4bee3e0a6e6337c2
       eslint: 7.23.0
       eslint-visitor-keys: 2.0.0
       esquery: 1.4.0
@@ -6616,7 +6616,7 @@ specifiers:
   '@babel/core': ^7.13.13
   '@babel/preset-env': ^7.13.12
   '@babel/preset-typescript': ^7.13.0
-  '@nick-mazuk/eslint-config': ^0.7.40
+  '@nick-mazuk/eslint-config': ^0.7.41
   '@types/jest': ^26.0.22
   '@types/node': ^14.14.37
   '@types/react': ^17.0.3
