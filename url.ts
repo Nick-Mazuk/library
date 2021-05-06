@@ -19,6 +19,12 @@ const buildParameterString = (
     return parsedParameterArray.join('&')
 }
 
+const parseUrlPath = (path: string): string => {
+    const parts = path.split('?')
+    const [basePath] = parts
+    return basePath.endsWith('/') ? basePath : `${basePath}/`
+}
+
 export const appendQueryParameters = (
     url: string,
     queryParameters: QueryParameter[],
@@ -48,4 +54,11 @@ export const appendQueryParameters = (
         previousParametersSet
     )
     return `${urlParts[0]}${parameterString === '' ? '' : '?'}${parameterString}`
+}
+
+export const isParentPath = (basePath: string, currentPath: string): boolean => {
+    if (basePath === '/') return false
+    const parsedBasePath = parseUrlPath(basePath)
+    const parsedCurrentPath = parseUrlPath(currentPath)
+    return parsedCurrentPath.startsWith(parsedBasePath)
 }
