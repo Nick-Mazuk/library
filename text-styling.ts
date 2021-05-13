@@ -1,4 +1,4 @@
-import { createHmac } from 'crypto'
+import createHmac from 'crypto-js/hmac-sha256'
 
 export const endWithPunctuation = (string: string, punctuation?: string): string => {
     if ('.!?'.includes(string.charAt(string.length - 1))) return string
@@ -49,7 +49,7 @@ export const normalizeText = (string: string): string => {
 
 export const hash = (string: string): string => {
     if (string === '') return ''
-    return createHmac('sha256', string).digest('hex')
+    return createHmac('sha256', string).toString()
 }
 
 export const getFileExtension = (file: string): string => {
