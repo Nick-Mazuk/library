@@ -75,6 +75,7 @@ typings/
 # Output
 
 /js
+/esm
 
 .DS_STORE
 .DS_Store

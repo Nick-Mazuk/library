@@ -8,7 +8,7 @@
         "lint": "npm run eslint && npm run check-types",
         "test": "jest",
         "test:watch": "npm run test -- --watch",
-        "build": "tsc",
+        "build": "tsc && tsc -p esm.tsconfig.json",
         "prepublishOnly": "npm run lint && npm run test",
         "preversion": "npm run lint",
         "postversion": "git push && git push --tags"
