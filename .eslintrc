@@ -1,6 +1,6 @@
 {
     "extends": [
-        "@nick-mazuk/eslint-config/react"
+        "@nick-mazuk/eslint-config/index"
     ],
     "ignorePatterns": ["js/**/*", "esm/**/*"]
 }
