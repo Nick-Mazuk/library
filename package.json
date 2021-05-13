@@ -17,7 +17,8 @@
         "collectCoverage": true,
         "testPathIgnorePatterns": [
             "/node_modules/",
-            "/js/"
+            "/js/",
+            "/esm/"
         ],
         "globalSetup": "./test-setup.ts"
     },
