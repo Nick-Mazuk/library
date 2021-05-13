@@ -25,6 +25,7 @@
     "exclude": [
         "node_modules",
         "js**/*",
-        "esm**/*"
+        "esm**/*",
+        "__tests__/*"
     ]
 }
