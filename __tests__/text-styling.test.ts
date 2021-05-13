@@ -549,7 +549,7 @@ describe('normalizes text (e.g., for search queries)', () => {
 describe('hashes a string', () => {
     const hashes: [string, string][] = [
         ['', ''],
-        ['hello world', '44fe2964bd935672aae4a98f721fbee408f0d84be6e3cdb5c5b2ca7bf14ac958'],
+        ['hello world', 'b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9'],
     ]
     test.each(hashes)('hashes "%s" to "%s"', (input, output) => {
         expect(hash(input)).toBe(output)
