@@ -1,2 +1,10 @@
 __test__
 node_modules
+.vscode
+.github
+babel.config.cjs
+esm.tsconfig.json
+tsconfig.json
+renovate.json
+.eslintrc
+.gitignore
