@@ -1,4 +1,4 @@
-import sha256 from 'crypto-js/sha256'
+import { SHA256 as sha256 } from 'crypto-es/lib/sha256'
 
 export const endWithPunctuation = (string: string, punctuation?: string): string => {
     if ('.!?'.includes(string.charAt(string.length - 1))) return string
