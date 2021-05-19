@@ -6,6 +6,7 @@ import {
     getYouTubeChannelId,
     getYouTubeVideoThumbnail,
     createYouTubeChannelUrl,
+    createYouTubeVideoUrl,
 } from '../youtube'
 
 /* eslint-disable no-secrets/no-secrets -- urls will often look like secrets */
@@ -424,6 +425,21 @@ describe('create YT channel url', () => {
         )
         expect(createYouTubeChannelUrl('123456', { subscribe: true })).toBe(
             'https://youtube.com/123456?subscribe=1'
+        )
+    })
+})
+
+describe('create YT video url', () => {
+    test('without custom options', () => {
+        expect(createYouTubeVideoUrl('12345')).toBe('https://youtube.com/watch?v=12345')
+        expect(createYouTubeVideoUrl('123456')).toBe('https://youtube.com/watch?v=123456')
+    })
+    test('with auto-subscribe', () => {
+        expect(createYouTubeVideoUrl('12345', { timestamp: 3 })).toBe(
+            'https://youtube.com/watch?v=12345?t=3'
+        )
+        expect(createYouTubeVideoUrl('123456', { timestamp: 5 })).toBe(
+            'https://youtube.com/watch?v=123456?t=5'
         )
     })
 })

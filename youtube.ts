@@ -66,3 +66,14 @@ export const createYouTubeChannelUrl = (
     if (options?.subscribe) url += '?subscribe=1'
     return url
 }
+
+export const createYouTubeVideoUrl = (
+    videoId: string,
+    options?: {
+        timestamp?: number
+    }
+): string => {
+    let url = `https://youtube.com/watch?v=${videoId}`
+    if (options?.timestamp) url += `?t=${options.timestamp}`
+    return url
+}
