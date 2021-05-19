@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [10, 12, 14]
+        node: [14, 16]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2.1.5
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2.1.5
         with:
-          node-version: 14
+          node-version: 16
       - run: npx pnpm i
       - uses: JS-DevTools/npm-publish@v1
         with:
