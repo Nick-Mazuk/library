@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: 16
       - run: npx pnpm i --frozen-lockfile=false
-      - run: npm build
+      - run: npm run build
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
