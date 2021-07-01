@@ -7,7 +7,7 @@ specifiers:
   '@nick-mazuk/eslint-config': ^0.8.12
   '@types/jest': ^26.0.23
   '@types/node': ^15.3.1
-  '@types/react': ^17.0.12
+  '@types/react': ^17.0.13
   '@types/validator': ^13.1.4
   crypto-es: ^1.2.7
   eslint: ^7.29.0
@@ -27,7 +27,7 @@ devDependencies:
   '@nick-mazuk/eslint-config': 0.8.12_eslint@7.29.0+typescript@4.3.5
   '@types/jest': 26.0.23
   '@types/node': 15.12.5
-  '@types/react': 17.0.12
+  '@types/react': 17.0.13
   '@types/validator': 13.1.4
   eslint: 7.29.0
   jest: 27.0.6
@@ -1615,8 +1615,8 @@ packages:
     resolution: {integrity: sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==}
     dev: true
 
-  /@types/react/17.0.12:
-    resolution: {integrity: sha512-F0Kcg/W9Zakf9GnYQzM67QjeTlbBcE8UPOck3pjiW0K4vqXvmfm5UErg+83nkK4VIi8IixaA2gqYgI42UTq0TQ==}
+  /@types/react/17.0.13:
+    resolution: {integrity: sha512-D/G3PiuqTfE3IMNjLn/DCp6umjVCSvtZTPdtAFy5+Ved6CsdRvivfKeCzw79W4AatShtU4nGqgvOv5Gro534vQ==}
     dependencies:
       '@types/prop-types': 15.7.3
       '@types/scheduler': 0.16.1
