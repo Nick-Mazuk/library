@@ -4,7 +4,7 @@ specifiers:
   '@babel/core': ^7.15.0
   '@babel/preset-env': ^7.15.0
   '@babel/preset-typescript': ^7.15.0
-  '@nick-mazuk/eslint-config': ^0.8.15
+  '@nick-mazuk/eslint-config': ^0.8.16
   '@types/jest': ^27.0.1
   '@types/node': ^15.3.1
   '@types/react': ^17.0.19
@@ -24,7 +24,7 @@ devDependencies:
   '@babel/core': 7.15.0
   '@babel/preset-env': 7.15.0_@babel+core@7.15.0
   '@babel/preset-typescript': 7.15.0_@babel+core@7.15.0
-  '@nick-mazuk/eslint-config': 0.8.15_eslint@7.32.0+typescript@4.4.2
+  '@nick-mazuk/eslint-config': 0.8.16_eslint@7.32.0+typescript@4.4.2
   '@types/jest': 27.0.1
   '@types/node': 15.14.7
   '@types/react': 17.0.19
@@ -1476,8 +1476,8 @@ packages:
       chalk: 4.1.2
     dev: true
 
-  /@nick-mazuk/eslint-config/0.8.15_eslint@7.32.0+typescript@4.4.2:
-    resolution: {integrity: sha512-9PUiNYqwK9E7toEp2n3/eae9Zb+ZlBTx4xCynnh9rDCcdPqc804oaib4KJSD9n1CZQPmYfa+1Yvy9QCgCyO4FQ==}
+  /@nick-mazuk/eslint-config/0.8.16_eslint@7.32.0+typescript@4.4.2:
+    resolution: {integrity: sha512-I7edW4rg47XBCGygGdcoQY4/4t8rrnIR5yvJpNjHMexBVLAwDZbsDt6535ImheuxbOXy7g/rEsb4w11Mv36kRQ==}
     peerDependencies:
       eslint: '>= 7.25.0'
       typescript: '>= 4.2.4'
@@ -1494,7 +1494,7 @@ packages:
       eslint-plugin-jest: 24.4.0_da4f9339ef8469a9827d79c63dd868d5
       eslint-plugin-jsx-a11y: 6.4.1_eslint@7.32.0
       eslint-plugin-no-secrets: 0.8.9_eslint@7.32.0
-      eslint-plugin-prettier: 3.4.0_5a48a349ffec60f5257b5f148f5199c3
+      eslint-plugin-prettier: 4.0.0_5a48a349ffec60f5257b5f148f5199c3
       eslint-plugin-promise: 5.1.0_eslint@7.32.0
       eslint-plugin-react: 7.24.0_eslint@7.32.0
       eslint-plugin-react-hooks: 4.2.0_eslint@7.32.0
@@ -2658,13 +2658,13 @@ packages:
       eslint: 7.32.0
     dev: true
 
-  /eslint-plugin-prettier/3.4.0_5a48a349ffec60f5257b5f148f5199c3:
-    resolution: {integrity: sha512-UDK6rJT6INSfcOo545jiaOwB701uAIt2/dR7WnFQoGCVl1/EMqdANBmwUaqqQ45aXprsTGzSa39LI1PyuRBxxw==}
+  /eslint-plugin-prettier/4.0.0_5a48a349ffec60f5257b5f148f5199c3:
+    resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
-      eslint: '>=5.0.0'
+      eslint: '>=7.28.0'
       eslint-config-prettier: '*'
-      prettier: '>=1.13.0'
+      prettier: '>=2.0.0'
     peerDependenciesMeta:
       eslint-config-prettier:
         optional: true
