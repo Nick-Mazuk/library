@@ -14,11 +14,11 @@ specifiers:
   jest: ^27.3.1
   prettier: ^2.4.1
   typescript: ^4.4.4
-  validator: ^13.6.0
+  validator: ^13.7.0
 
 dependencies:
   crypto-es: 1.2.7
-  validator: 13.6.0
+  validator: 13.7.0
 
 devDependencies:
   '@babel/core': 7.16.0
@@ -5242,8 +5242,8 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /validator/13.6.0:
-    resolution: {integrity: sha512-gVgKbdbHgtxpRyR8K0O6oFZPhhB5tT1jeEHZR0Znr9Svg03U0+r9DXWMrnRAB+HtCStDQKlaIZm42tVsVjqtjg==}
+  /validator/13.7.0:
+    resolution: {integrity: sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==}
     engines: {node: '>= 0.10'}
     dev: false
 

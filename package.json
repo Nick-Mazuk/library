@@ -1,6 +1,6 @@
 {
     "name": "@nick-mazuk/lib",
-    "version": "0.8.140",
+    "version": "0.8.141",
     "description": "",
     "scripts": {
         "eslint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
@@ -42,6 +42,6 @@
     },
     "dependencies": {
         "crypto-es": "^1.2.7",
-        "validator": "^13.6.0"
+        "validator": "^13.7.0"
     }
 }
