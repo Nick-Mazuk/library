@@ -1,6 +1,6 @@
 {
     "name": "@nick-mazuk/lib",
-    "version": "0.8.147",
+    "version": "0.8.148",
     "description": "",
     "scripts": {
         "eslint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
@@ -31,7 +31,7 @@
         "@babel/preset-env": "^7.16.4",
         "@babel/preset-typescript": "^7.16.0",
         "@nick-mazuk/eslint-config": "^0.8.16",
-        "@types/jest": "^27.0.2",
+        "@types/jest": "^27.0.3",
         "@types/node": "^16.11.7",
         "@types/react": "^17.0.35",
         "@types/validator": "^13.7.0",
