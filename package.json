@@ -1,6 +1,6 @@
 {
     "name": "@nick-mazuk/lib",
-    "version": "0.8.150",
+    "version": "0.8.151",
     "description": "",
     "scripts": {
         "eslint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
@@ -33,7 +33,7 @@
         "@nick-mazuk/eslint-config": "^0.8.16",
         "@types/jest": "^27.0.3",
         "@types/node": "^16.11.9",
-        "@types/react": "^17.0.35",
+        "@types/react": "^17.0.36",
         "@types/validator": "^13.7.0",
         "eslint": "^7.32.0",
         "jest": "^27.3.1",
