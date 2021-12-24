@@ -8,7 +8,7 @@ specifiers:
   '@types/jest': ^27.0.3
   '@types/node': ^16.11.17
   '@types/react': ^17.0.38
-  '@types/validator': ^13.7.0
+  '@types/validator': ^13.7.1
   crypto-es: ^1.2.7
   eslint: ^7.32.0
   jest: ^27.4.5
@@ -28,7 +28,7 @@ devDependencies:
   '@types/jest': 27.0.3
   '@types/node': 16.11.17
   '@types/react': 17.0.38
-  '@types/validator': 13.7.0
+  '@types/validator': 13.7.1
   eslint: 7.32.0
   jest: 27.4.5
   prettier: 2.5.1
@@ -1693,8 +1693,8 @@ packages:
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
     dev: true
 
-  /@types/validator/13.7.0:
-    resolution: {integrity: sha512-+jBxVvXVuggZOrm04NR8z+5+bgoW4VZyLzUO+hmPPW1mVFL/HaitLAkizfv4yg9TbG8lkfHWVMQ11yDqrVVCzA==}
+  /@types/validator/13.7.1:
+    resolution: {integrity: sha512-I6OUIZ5cYRk5lp14xSOAiXjWrfVoMZVjDuevBYgQDYzZIjsf2CAISpEcXOkFAtpAHbmWIDLcZObejqny/9xq5Q==}
     dev: true
 
   /@types/yargs-parser/20.2.1:
