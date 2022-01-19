@@ -1,6 +1,6 @@
 {
     "name": "@nick-mazuk/lib",
-    "version": "0.8.181",
+    "version": "0.8.182",
     "description": "",
     "scripts": {
         "eslint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
