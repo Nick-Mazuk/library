@@ -1,6 +1,6 @@
 {
     "name": "@nick-mazuk/lib",
-    "version": "0.8.185",
+    "version": "0.8.186",
     "description": "",
     "scripts": {
         "eslint": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
@@ -27,7 +27,7 @@
     "author": "",
     "license": "MIT",
     "devDependencies": {
-        "@babel/core": "^7.16.10",
+        "@babel/core": "^7.16.12",
         "@babel/preset-env": "^7.16.11",
         "@babel/preset-typescript": "^7.16.7",
         "@nick-mazuk/eslint-config": "^0.8.16",
