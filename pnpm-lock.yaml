@@ -12,7 +12,7 @@ specifiers:
   crypto-es: ^1.2.7
   eslint: ^7.32.0
   jest: ^27.5.1
-  prettier: ^2.6.0
+  prettier: ^2.6.1
   typescript: ^4.6.3
   validator: ^13.7.0
 
@@ -31,7 +31,7 @@ devDependencies:
   '@types/validator': 13.7.1
   eslint: 7.32.0
   jest: 27.5.1
-  prettier: 2.6.0
+  prettier: 2.6.1
   typescript: 4.6.3
 
 packages:
@@ -1573,7 +1573,7 @@ packages:
       eslint-plugin-jest: 24.4.0_666a1e10fde942438f5fb564b63f7e0a
       eslint-plugin-jsx-a11y: 6.4.1_eslint@7.32.0
       eslint-plugin-no-secrets: 0.8.9_eslint@7.32.0
-      eslint-plugin-prettier: 4.0.0_c6d6a19f5883a51326d3e31f2080570d
+      eslint-plugin-prettier: 4.0.0_357716ef77f3583c900ac043c71d7492
       eslint-plugin-promise: 5.1.0_eslint@7.32.0
       eslint-plugin-react: 7.25.1_eslint@7.32.0
       eslint-plugin-react-hooks: 4.2.0_eslint@7.32.0
@@ -1582,7 +1582,7 @@ packages:
       eslint-plugin-testing-library: 4.12.0_eslint@7.32.0+typescript@4.6.3
       eslint-plugin-unicorn: 35.0.0_eslint@7.32.0
       eslint-plugin-unused-imports: 1.1.4_a5bd583cf39d17fb8c045ae7e027106b
-      prettier: 2.6.0
+      prettier: 2.6.1
       typescript: 4.6.3
     transitivePeerDependencies:
       - supports-color
@@ -2737,7 +2737,7 @@ packages:
       eslint: 7.32.0
     dev: true
 
-  /eslint-plugin-prettier/4.0.0_c6d6a19f5883a51326d3e31f2080570d:
+  /eslint-plugin-prettier/4.0.0_357716ef77f3583c900ac043c71d7492:
     resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
@@ -2750,7 +2750,7 @@ packages:
     dependencies:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
-      prettier: 2.6.0
+      prettier: 2.6.1
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -4562,8 +4562,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier/2.6.0:
-    resolution: {integrity: sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==}
+  /prettier/2.6.1:
+    resolution: {integrity: sha512-8UVbTBYGwN37Bs9LERmxCPjdvPxlEowx2urIL6urHzdb3SDq4B/Z6xLFCblrSnE4iKWcS6ziJ3aOYrc1kz/E2A==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
