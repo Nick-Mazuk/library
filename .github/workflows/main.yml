@@ -10,7 +10,7 @@ jobs:
         node: [14, 16]
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3.1.0
+      - uses: actions/setup-node@v3.1.1
         with:
           node-version: ${{ matrix.node }}
       - run: npx pnpm i --frozen-lockfile=false
