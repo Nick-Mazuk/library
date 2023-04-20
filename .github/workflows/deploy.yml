@@ -31,7 +31,7 @@ jobs:
           node-version: 16
       - run: npx pnpm i --frozen-lockfile=false
       - run: npm run build
-      - uses: JS-DevTools/npm-publish@v1
+      - uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
           access: 'public'
